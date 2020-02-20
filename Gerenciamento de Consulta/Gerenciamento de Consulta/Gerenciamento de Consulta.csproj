@@ -172,7 +172,10 @@
     <Compile Include="Models\Partes_Corpos.cs" />
     <Compile Include="Models\Planos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Context\Map\AnamineseMap.cs" />
     <Compile Include="Repository\Context\BaseContext.cs" />
+    <Compile Include="Repository\Context\Map\AgendamentoMap.cs" />
+    <Compile Include="Repository\Context\Map\PacienteMap.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
   </ItemGroup>

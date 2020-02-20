@@ -1,5 +1,6 @@
 ﻿using Gerenciamento_de_Consulta.Repository.Context;
 using System;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Gerenciamento_de_Consulta.Repository
@@ -12,40 +13,52 @@ namespace Gerenciamento_de_Consulta.Repository
         }
 
         BaseContext ctx = new BaseContext();
+
         public void Add(TEntity obj)
         {
-            throw new NotImplementedException();
+            ctx.Set<TEntity>().Add(obj);
         }
 
         public void Delete(Func<TEntity, bool> predicate)
         {
-            throw new NotImplementedException();
+            ctx.Set<TEntity>()
+               .Where(predicate).ToList()
+               .ForEach(del => ctx.Set<TEntity>().Remove(del));
+
+            ctx.SaveChanges();
         }
         
 
         public TEntity Find(params object[] key)
         {
-            throw new NotImplementedException();
+            return ctx.Set<TEntity>().Find(key);
         }
 
         public IQueryable<TEntity> Get(Func<TEntity, bool> predicate)
         {
-            throw new NotImplementedException();
+            return GetAll().Where(predicate).AsQueryable();
         }
 
         public IQueryable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return ctx.Set<TEntity>();
         }
 
         public void SaveAll()
         {
-            throw new NotImplementedException();
+            ctx.SaveChanges();
         }
 
         public void Update(TEntity obj)
         {
-            throw new NotImplementedException();
+            ctx.Entry(obj).State = EntityState.Modified;
+            ctx.SaveChanges();
+        }
+
+        public virtual void Save(TEntity obj)
+        {
+            ctx.Set<TEntity>().Add(obj);
+            ctx.SaveChanges();
         }
     }
 }

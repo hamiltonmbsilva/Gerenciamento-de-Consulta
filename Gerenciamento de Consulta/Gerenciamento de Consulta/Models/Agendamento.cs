@@ -11,8 +11,11 @@ namespace Gerenciamento_de_Consulta.Models
         public DateTime Data_Consulta { get; set; }
         public string Nome_Procedimento { get; set; }
         public DateTime Horario { get; set; }
-        public List<Pacientes> Lista_Pacientes { get; set; } = new List<Pacientes>();
+        public int PacienteId { get; set; }
+        public virtual Pacientes Pacientes { get; set; } 
 
-        public Anaminese Anaminese { get; set; } 
+        public virtual Anaminese Anaminese { get; set; } 
+
+        
     }
 }

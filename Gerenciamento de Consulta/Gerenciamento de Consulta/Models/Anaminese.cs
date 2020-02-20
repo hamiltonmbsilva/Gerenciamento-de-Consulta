@@ -9,8 +9,10 @@ namespace Gerenciamento_de_Consulta.Models
         public int IdAnaminese { get; set; }
 
         public string Sintoma { get; set; }
-        public string Doenca_Exixtente { get; set; }
+        public string Doenca_Existente { get; set; }
 
-        public List<Partes_Corpos> Partes_Corpo { get; set; } = new List<Partes_Corpos>();
+        public Partes_Corpos Partes_Corpo { get; set; }
+
+        public virtual Agendamento Agendamento { get; set; }
     }
 }

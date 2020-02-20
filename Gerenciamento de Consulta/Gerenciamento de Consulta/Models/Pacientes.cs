@@ -15,9 +15,14 @@ namespace Gerenciamento_de_Consulta.Models
         public string CPF { get; set; }
         public string Senha { get; set; }
         public DateTime DataDeNascimento { get; set; }
-        public Agendamento Agendamento { get; set; }
+        public virtual ICollection<Agendamento> Agendamentos { get; set; } = new List<Agendamento>();
         [Required]
-        public List<Planos> ListaPlanos { get; set; } = new List<Planos>();
+        public Planos Planos { get; set; } 
+
+        public Pacientes()
+        {
+            Agendamentos = new HashSet<Agendamento>();
+        }
 
     }
 }
