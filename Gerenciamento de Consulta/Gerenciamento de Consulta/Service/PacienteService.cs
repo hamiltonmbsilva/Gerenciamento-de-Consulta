@@ -33,7 +33,7 @@ namespace Gerenciamento_de_Consulta.Service
 
                 //Vendo se a idade do paciente e maior que 18
                 int idade = DateTime.Now.Year - paciente.DataDeNascimento.Year;
-                if (DateTime.Now.DayOfWeek < paciente.DataDeNascimento.DayOfWeek)
+                if (paciente.DataDeNascimento.AddYears(18) > DateTime.Now )
                 {
                     idade = idade - 1;
                 }
@@ -60,7 +60,7 @@ namespace Gerenciamento_de_Consulta.Service
                     }
                     else
                     {
-                        paciente.DataDeNascimento = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy"));
+                        //paciente.DataDeNascimento = Convert.ToDateTime(paciente.DataDeNascimento.ToString("dd/MM/yyyy"));
                         repository.Save(paciente);
                     }
                 }
