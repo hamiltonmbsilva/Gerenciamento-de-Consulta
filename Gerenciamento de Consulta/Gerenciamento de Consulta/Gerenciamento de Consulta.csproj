@@ -169,15 +169,16 @@
     <Compile Include="Models\Anaminese.cs" />
     <Compile Include="Models\Agendamento.cs" />
     <Compile Include="Models\Pacientes.cs" />
-    <Compile Include="Models\Partes_Corpos.cs" />
-    <Compile Include="Models\Planos.cs" />
+    <Compile Include="Models\Enum\EnumPartesCorpos.cs" />
+    <Compile Include="Models\Enum\EnumPlanos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\Context\Map\AnamineseMap.cs" />
     <Compile Include="Repository\Context\BaseContext.cs" />
-    <Compile Include="Repository\Context\Map\AgendamentoMap.cs" />
-    <Compile Include="Repository\Context\Map\PacienteMap.cs" />
+    <Compile Include="Repository\EntityRepository\AgendamentoRepository.cs" />
+    <Compile Include="Repository\EntityRepository\AnamineseRepository.cs" />
+    <Compile Include="Repository\EntityRepository\PacienteRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Service\PacienteService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

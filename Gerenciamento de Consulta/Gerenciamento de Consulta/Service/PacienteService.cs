@@ -11,12 +11,12 @@ namespace Gerenciamento_de_Consulta.Service
         private PacienteRepository paciente = new PacienteRepository();
         
 
-        public IEnumerable<Pacientes> BuscarTodosOsPacinetes()
+        public IEnumerable<Paciente> BuscarTodosOsPacinetes()
         {
             return paciente.GetAll();
         }
 
-        public Pacientes SalvarPaciente(Pacientes p)
+        public Paciente SalvarPaciente(Paciente p)
         {
             if (p == null)
                 throw new Exception("Não é possivel salvar um Paciente vazio");

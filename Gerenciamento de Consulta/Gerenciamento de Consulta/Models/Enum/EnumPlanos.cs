@@ -1,6 +1,6 @@
 ﻿namespace Gerenciamento_de_Consulta.Models
 {
-    public enum Planos
+    public enum EnumPlanos
     {
         Unimed,
         AMIL, 

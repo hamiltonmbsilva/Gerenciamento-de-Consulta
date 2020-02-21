@@ -2,7 +2,7 @@
 
 namespace Gerenciamento_de_Consulta.Repository.EntityRepository
 {
-    public class PacienteRepository : Repository<Pacientes>
+    public class PacienteRepository : Repository<Paciente>
     {
     }
 }

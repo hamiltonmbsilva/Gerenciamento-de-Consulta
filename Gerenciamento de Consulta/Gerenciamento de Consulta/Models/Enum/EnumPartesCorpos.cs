@@ -1,6 +1,6 @@
 ﻿namespace Gerenciamento_de_Consulta.Models
 {
-    public enum Partes_Corpos
+    public enum EnumPartesCorpos
     {
         Cabeça, 
         Abdomem,
