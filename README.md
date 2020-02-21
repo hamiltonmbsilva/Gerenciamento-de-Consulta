@@ -9,8 +9,11 @@ Sistema de gerenciamento de consulta C# .net
    - No Search digitar "Consoler"
    - No Packege Maneger Console(que abre na parte de baixo da tela)
    - Digitar os Seguintes comandos:
+   
 	> Enable-Migrations - (A primeira vez para criar, depois não necessario)
+	
 	> add-Migration
+	
 	> Upadte-DataBase
 	
 
