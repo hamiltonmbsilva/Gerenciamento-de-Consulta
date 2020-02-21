@@ -6,7 +6,7 @@ namespace Gerenciamento_de_Consulta.Repository.Context
     public sealed class BaseContext : DbContext
     {
         public BaseContext()
-            : base("name=MysqlConnection")
+            : base("name=connectionString")
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;

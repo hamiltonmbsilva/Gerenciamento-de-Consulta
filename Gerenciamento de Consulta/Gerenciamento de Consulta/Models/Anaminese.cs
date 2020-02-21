@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
@@ -22,6 +21,7 @@ namespace Gerenciamento_de_Consulta.Models
         public EnumPartesCorpos Partes_Corpo { get; set; }
 
         //Relacionamento
+        public int IdAgendamento { get; set; }
         public virtual Agendamento Agendamento { get; set; }
 
         public static void Map(DbModelBuilder modelBuilder)
@@ -31,8 +31,7 @@ namespace Gerenciamento_de_Consulta.Models
             map.Property(x => x.IdAnaminese)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            map.HasRequired(x => x.Agendamento)
-            .WithOptional(x => x.Anaminese);
+            map.HasRequired(x => x.Agendamento).WithRequiredDependent(p => p.Anaminese);
         }
     }
 }

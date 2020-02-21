@@ -26,7 +26,8 @@ namespace Gerenciamento_de_Consulta.Models
         public int PacienteId { get; set; }
         public virtual Paciente Pacientes { get; set; }
 
-        //Relacionamento 
+        //Relacionamento
+        public int Anaminese_id { get; set; }
         public virtual Anaminese Anaminese { get; set; }
 
         public static void Map(DbModelBuilder modelBuilder)
@@ -36,14 +37,12 @@ namespace Gerenciamento_de_Consulta.Models
             map.Property(x => x.IdAgendamento)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
+            //map.HasOptional(x => x.Anaminese).WithRequired(p => p.Agendamento);
+
             //Relacionamento
             map.HasRequired(x => x.Pacientes)
                 .WithMany(x => x.Agendamentos)
                 .HasForeignKey(c => c.PacienteId);
-
-            //Relacionamento
-            map.HasOptional(x => x.Anaminese)
-                .WithRequired(x => x.Agendamento);
         }
     }
 }
