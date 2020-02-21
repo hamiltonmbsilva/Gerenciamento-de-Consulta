@@ -25,8 +25,7 @@ public sealed class PacienteMap : EntityTypeConfiguration<Pacientes>
 
         Property(x => x.CPF)
             .HasColumnName("cpf")
-            .IsRequired()
-            .HasMaxLength(11);
+            .IsRequired();
 
         Property(x => x.Senha)
             .HasColumnName("senha")

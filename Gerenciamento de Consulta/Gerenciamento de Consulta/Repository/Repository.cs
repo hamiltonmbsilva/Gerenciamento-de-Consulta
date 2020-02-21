@@ -60,5 +60,15 @@ namespace Gerenciamento_de_Consulta.Repository
             ctx.Set<TEntity>().Add(obj);
             ctx.SaveChanges();
         }
+
+        public IQueryable<TEntity> GetAllByDay(Func<TEntity, bool> predicate)
+        {
+            return GetAll().Where(predicate).AsQueryable();
+        }
+
+        public IQueryable<TEntity> GetAllByPeriod(Func<TEntity, bool> predicate)
+        {
+            return GetAll().Where(predicate).AsQueryable();
+        }
     }
 }
