@@ -176,6 +176,7 @@
     <Compile Include="Models\Pacientes.cs" />
     <Compile Include="Models\Enum\EnumPartesCorpos.cs" />
     <Compile Include="Models\Enum\EnumPlanos.cs" />
+    <Compile Include="Models\ValidarCpf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Context\BaseContext.cs" />
     <Compile Include="Repository\EntityRepository\AgendamentoRepository.cs" />
