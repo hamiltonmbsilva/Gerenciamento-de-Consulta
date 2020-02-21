@@ -21,7 +21,7 @@ namespace Gerenciamento_de_Consulta.Models
         public string Nome { get; set; }
 
         [Required, Column("cpf")]
-        public int CPF { get; set; }
+        public string CPF { get; set; }
 
         [Required, Column("senha"), MaxLength(21)]
         public string Senha { get; set; }

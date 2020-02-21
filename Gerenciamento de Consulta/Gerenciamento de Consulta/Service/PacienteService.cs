@@ -38,9 +38,11 @@ namespace Gerenciamento_de_Consulta.Service
                     idade = idade - 1;
                 }
 
-                //int cpfValor =  ValidarCpf(paciente.CPF);
+                //Chamando a classe ValidaCpf, passando uma string digitada pelo usuario
+                bool valido =  ValidarCpf.IsCpf(paciente.CPF);
 
-                if (idade > 18 && paciente.Codigo != 0 && paciente.CPF != 0)
+
+                if (idade > 18 && paciente.Codigo != 0 && valido == true)
                 {
                     //Verificando se existe algum codigo cadastrado no banco de dados
                     var codigo = repository.Get(x => x.Codigo == paciente.Codigo).FirstOrDefault();

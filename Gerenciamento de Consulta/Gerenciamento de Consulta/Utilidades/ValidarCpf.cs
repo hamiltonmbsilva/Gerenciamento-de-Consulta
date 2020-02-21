@@ -15,13 +15,22 @@ namespace Gerenciamento_de_Consulta.Models
 			string digito;
 			int soma;
 			int resto;
+
+			//Removendo os espações antes e depois da string
 			cpf = cpf.Trim();
+
+			//Esta subistituindo o ('.') por espaço e o ('-') tambem por espaço
 			cpf = cpf.Replace(".", "").Replace("-", "");
+
+			//Valida um numero de caracteres
 			if (cpf.Length != 11)
 				return false;
+
+			//Pega os 9 primeiros numeros do cpf para calcular o digito verificador
 			tempCpf = cpf.Substring(0, 9);
 			soma = 0;
 
+			//Calcula os primeiros 9 numeros da direita para esquerda  por numeros crecente que seria do multiplicador1[i]
 			for (int i = 0; i < 9; i++)
 				soma += int.Parse(tempCpf[i].ToString()) * multiplicador1[i];
 				resto = soma % 11;
@@ -29,18 +38,28 @@ namespace Gerenciamento_de_Consulta.Models
 				resto = 0;
 			else
 				resto = 11 - resto;
+			
+			//Aqui pega o primeiro digito verificador
 			digito = resto.ToString();
+
+			//Pega o primeiro resultado do digito verificador, para calcular o segundo Digito verificado
 			tempCpf = tempCpf + digito;
 			soma = 0;
+
+			//Calcula os primeiros 9 numeros da direita para esquerda  por numeros crecente que seria do multiplicador2[i]
 			for (int i = 0; i < 10; i++)
 				soma += int.Parse(tempCpf[i].ToString()) * multiplicador2[i];
 			resto = soma % 11;
+
 			if (resto < 2)
 				resto = 0;
 			else
 				resto = 11 - resto;
-			digito = digito + resto.ToString();
 
+			//Aqui pega o segundo digito verificador
+			digito = digito + resto.ToString();
+			
+			//Retorna True e False , pegando os ultimos digitos
 			return cpf.EndsWith(digito);
 		}
 	}
