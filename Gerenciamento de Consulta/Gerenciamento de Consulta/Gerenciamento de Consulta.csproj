@@ -166,27 +166,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002210206422_update.cs" />
-    <Compile Include="Migrations\202002210206422_update.designer.cs">
-      <DependentUpon>202002210206422_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Anaminese.cs" />
-    <Compile Include="Models\Agendamento.cs" />
-    <Compile Include="Models\Pacientes.cs" />
-    <Compile Include="Models\Enum\EnumPartesCorpos.cs" />
-    <Compile Include="Models\Enum\EnumPlanos.cs" />
-    <Compile Include="Utilidades\ValidarCpf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\Context\BaseContext.cs" />
-    <Compile Include="Repository\EntityRepository\AgendamentoRepository.cs" />
-    <Compile Include="Repository\EntityRepository\AnamineseRepository.cs" />
-    <Compile Include="Repository\EntityRepository\PacienteRepository.cs" />
-    <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Repository\Repository.cs" />
-    <Compile Include="Service\AgendamentoService.cs" />
-    <Compile Include="Service\AnamineseService.cs" />
-    <Compile Include="Service\PacienteService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -270,11 +250,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002210206422_update.resx">
-      <DependentUpon>202002210206422_update.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
