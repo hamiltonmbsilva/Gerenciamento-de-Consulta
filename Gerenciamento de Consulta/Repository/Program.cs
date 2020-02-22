@@ -16,7 +16,7 @@ namespace Repository
             Paciente paciente = new Paciente();
 
             paciente.Codigo = 123;
-            paciente.Nome = "Yuri";
+            paciente.Nome = "ZEZiM";
             paciente.CPF = "117.830.000-00";
             paciente.Senha = "123";
             paciente.DataDeNascimento = DateTime.Now;
