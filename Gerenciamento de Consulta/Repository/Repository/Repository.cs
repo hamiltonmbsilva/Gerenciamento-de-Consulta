@@ -1,9 +1,9 @@
-﻿using Repository.Repository.Context;
+﻿using Repository.Context;
 using System;
 using System.Data.Entity;
 using System.Linq;
 
-namespace Repository.Repository
+namespace RepositoryWebApi.Repository
 {
     public abstract class Repository<TEntity> : IDisposable, IRepository<TEntity> where TEntity : class
     {

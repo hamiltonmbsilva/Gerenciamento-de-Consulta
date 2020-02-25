@@ -1,5 +1,6 @@
 ﻿using Repository.Models;
-using Repository.Repository.EntityRepository;
+using RepositoryWebApi.Repository.EntityRepository;
+using RepositoryWebApi.Repository.Models;
 using System;
 
 namespace Repository

@@ -32,6 +32,8 @@ export default {
 .link {
   color: white;
   text-decoration: none;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif
 }
 
 .link:hover {

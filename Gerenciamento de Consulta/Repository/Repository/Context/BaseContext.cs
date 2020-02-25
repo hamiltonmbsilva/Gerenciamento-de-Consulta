@@ -1,7 +1,8 @@
 ﻿using Repository.Models;
+using RepositoryWebApi.Repository.Models;
 using System.Data.Entity;
 
-namespace Repository.Repository.Context
+namespace Repository.Context
 {
     public sealed class BaseContext : DbContext
     {

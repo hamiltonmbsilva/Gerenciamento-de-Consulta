@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Repository.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
-namespace Repository.Models
+namespace RepositoryWebApi.Repository.Models
 {
     [Table("agendamentos")]
     public class Agendamento

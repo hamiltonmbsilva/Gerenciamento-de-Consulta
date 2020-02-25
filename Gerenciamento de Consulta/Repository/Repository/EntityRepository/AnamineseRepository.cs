@@ -1,8 +1,9 @@
 ﻿using Repository.Models;
-using Repository.Repository.Context;
+using Repository.Context;
 using System.Data.Entity;
 
-namespace Repository.Repository.EntityRepository
+
+namespace RepositoryWebApi.Repository.EntityRepository
 {
     public class AnamineseRepository : Repository<Anaminese>
     {

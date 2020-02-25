@@ -1,7 +1,6 @@
-﻿
-using Repository.Models;
+﻿using RepositoryWebApi.Repository.Models;
 
-namespace Repository.Repository.EntityRepository
+namespace RepositoryWebApi.Repository.EntityRepository
 {
     public class AgendamentoRepository : Repository<Agendamento>
     {
