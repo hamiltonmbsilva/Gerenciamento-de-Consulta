@@ -5,7 +5,7 @@ using System;
 
 namespace Repository
 {
-    class Program
+    public class Program
     {
         private static PacienteRepository pacienteRepository = new PacienteRepository();
         private static AgendamentoRepository agendamentoRepository = new AgendamentoRepository();
@@ -16,10 +16,10 @@ namespace Repository
 
             Paciente paciente = new Paciente();
 
-            paciente.Codigo = 123;
-            paciente.Nome = "ZEZiM";
-            paciente.CPF = "117.830.000-00";
-            paciente.Senha = "123";
+            paciente.Codigo = 985;
+            paciente.Nome = "Pedrin";
+            paciente.CPF = "000.000.000-00";
+            paciente.Senha = "698";
             paciente.DataDeNascimento = DateTime.Now;
 
             pacienteRepository.Save(paciente);

@@ -1,8 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <Titulo v-if="path === '/produtos/cadastrar' " texto="Cadastro de produtos" />
-      <Titulo v-if="path === '/produtos/alterar'" texto="Alterar de produto" />
+
     </div>
     <div>
       <b-form @submit="salvar" @reset="onReset" v-if="show">
@@ -29,26 +28,26 @@
 
         <b-button
           @click="salvar()"
-          v-if="path === '/produtos/cadastrar'"
+          v-if="path === '/agendamentos/cadastrar'"
           variant="success"
           style="margin-right: 10px;"
         >Cadastrar</b-button>
 
         <b-button
           @click="salvar()"
-          v-if="path === '/produtos/alterar'"
+          v-if="path === '/agendamentos/alterar'"
           variant="success"
           style="margin-right: 10px;"
         >Alterar</b-button>
 
         <b-button
-          v-if="path === '/produtos/cadastrar' "
+          v-if="path === '/agendamentos/cadastrar' "
           type="reset"
           variant="secondary"
           style="margin-right: 10px;"
         >Limpar</b-button>
 
-        <router-link to="/produtos">
+        <router-link to="/agendamentos">
           <b-button type="reset" variant="danger" class="btn-cadastrar">Voltar</b-button>
         </router-link>
       </b-form>
@@ -59,16 +58,27 @@
 <script>
 import Titulo from "../components/titulo.vue";
 //import AgendamentoService from "../Service/agendamentoService";
-export default {
-    data() {
-    return {
-      selected: [],
-      options: [],
+export default {   
+  // components: {
+  //   Titulo
+  // },
+  data(){
+    return{
+      form: {
+        idProduto: null,
+        codInterno: null,
+        codBarras: null,
+        descricao: "",
+        valorVenda: null
+      },
+      produto: null,
+      path: null,
       show: true
     };
   },
-  components: {
-    Titulo
+  mounted() {
+    this.path = window.location.pathname;
+    this.getAgendamento();
   },
 }
 </script>

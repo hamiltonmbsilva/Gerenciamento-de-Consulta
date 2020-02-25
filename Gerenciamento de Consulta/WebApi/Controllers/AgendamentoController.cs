@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebApi.Service;
 
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    
+    //[Route("api/[controller]")]
+    [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
     public class AgendamentoController : ApiController
     {
         private readonly AgendamentoService service = new AgendamentoService();
 
-        //GET: api/Agendamentos
-        [HttpGet]
+        //GET: api/Agendamento      
         public IHttpActionResult GetAll()
         {
             try

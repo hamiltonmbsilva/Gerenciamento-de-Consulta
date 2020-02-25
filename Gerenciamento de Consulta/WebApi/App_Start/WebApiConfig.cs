@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace WebApi
 {
@@ -10,7 +7,9 @@ namespace WebApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
+            // Configuração do Cors
+            config.EnableCors();
+         
             // Web API routes
             config.MapHttpAttributeRoutes();
 

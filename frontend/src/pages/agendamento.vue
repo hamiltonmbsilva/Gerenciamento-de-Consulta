@@ -64,7 +64,7 @@
 
 <script>
 import Titulo from "../components/titulo.vue";
-//import AgendamentoService from "../Service/agendamentoService";
+import AgendamentoService from "../Service/agendamentoService";
 
 export default {
   computed: {
@@ -76,6 +76,16 @@ export default {
             return {text: f.label, value: f.key };
         });
     }    
+  },
+  mounted() {
+    this.totalRows = this.agendamentos.length;
+    AgendamentoService.listarAgendamentos().then(resposta =>{
+      resposta.data.forEach(element => {
+        //configurar o formato de data
+        element.dataConsulta = this.organizarData(element.dataConsulta);
+
+      });
+    });
   },
  data(){
    return{
@@ -146,7 +156,6 @@ export default {
       return `${dia}/${mes}/${ano} ${hora}:${minuto}`;
     }
   }, 
-
   components: {
     Titulo
   }
