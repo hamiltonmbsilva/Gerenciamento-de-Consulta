@@ -1,14 +1,11 @@
-﻿using RepositoryWebApi.Repository.Models;
-using System;
+﻿using System;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using WebApi.Service;
 
-
 namespace WebApi.Controllers
 {
-
     [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
     //[Route("api/[controller]")]
     public class AgendamentoController : ApiController

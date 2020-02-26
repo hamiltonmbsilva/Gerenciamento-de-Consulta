@@ -8,8 +8,7 @@ using WebApi.Service;
 namespace WebApi.Controllers
 {
     [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
-    public class PacientesController : ApiController
-    {
+    public class PacientesController : ApiController    {
 
         private readonly PacienteService service = new PacienteService();
 

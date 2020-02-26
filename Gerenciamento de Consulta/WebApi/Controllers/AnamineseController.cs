@@ -7,15 +7,14 @@ using WebApi.Service;
 
 namespace WebApi.Controllers
 {
+    [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
     public class AnamineseController : ApiController
     {
-        [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
-        public class PacientesController : ApiController
-        {
+        private readonly AnamineseService service = new AnamineseService();
+            
 
-            private readonly AnamineseService service = new AnamineseService();
-
-            //GET: api/Anamineses     
+            //GET: api/Anaminese 
+            [HttpGet]
             public IHttpActionResult GetAll()
             {
                 try
@@ -30,7 +29,7 @@ namespace WebApi.Controllers
                 }
             }
 
-            //POST: api/Anamineses
+            //POST: api/Anaminese
             public IHttpActionResult PostAnaminise(Anaminese anaminese)
             {
                 try
@@ -50,7 +49,7 @@ namespace WebApi.Controllers
                 }
             }
 
-            //PUT: api/Anamineses/1
+            //PUT: api/Anaminese/1
             public IHttpActionResult PutAnaminese(Anaminese anaminese)
             {
                 try
@@ -70,7 +69,7 @@ namespace WebApi.Controllers
                 }
             }
 
-            //DELETE: api/Anamineses/1
+            //DELETE: api/Anaminese/1
             public IHttpActionResult DeleteAnaminese(int? id)
             {
                 try
@@ -88,7 +87,6 @@ namespace WebApi.Controllers
                 {
                     return BadRequest(ex.Message);
                 }
-            }
-        }
+            }        
     }
 }
