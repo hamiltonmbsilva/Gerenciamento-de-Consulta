@@ -122,7 +122,7 @@ namespace WebApi.Service
             }
         }
 
-        public bool ExcluirProduto(int? id)
+        public bool ExcluirPaciente(int? id)
         {
             try
             {

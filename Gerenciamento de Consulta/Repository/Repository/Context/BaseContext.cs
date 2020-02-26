@@ -9,18 +9,18 @@ namespace Repository.Context
         public BaseContext()
             : base("name=connectionString")
         {
-            Configuration.LazyLoadingEnabled = false;
+            Configuration.LazyLoadingEnabled = false; //habilita o lazyloading
             Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer<BaseContext>(null);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder); // cria o banco com code frist
 
-            Paciente.Map(modelBuilder);
-            Agendamento.Map(modelBuilder);
-            Anaminese.Map(modelBuilder);
+            Paciente.Map(modelBuilder); // chama o mapeamento da classe Paciente
+            Agendamento.Map(modelBuilder); // chama o mapeamento da classe Agendamento
+            Anaminese.Map(modelBuilder); // chama o mapeamento da classe Anaminese
         }
 
         public DbSet<Paciente> Pacientes { get; set; }

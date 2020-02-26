@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Web.Http;
 
 namespace WebApi
 {
@@ -7,19 +9,21 @@ namespace WebApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            var json = config.Formatters.JsonFormatter;
-            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.None;
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
-            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            config.Formatters.Remove(config.Formatters.XmlFormatter); // (IPC) Utilizado pra remover o retorno xlm do serviço passando a utilizar o Json
+
+            var serializerSettings = config.Formatters.JsonFormatter.SerializerSettings;
+            serializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.None; // (IPC) Utilizando "None", para remover os "$Id" adicionados pelo Entity Framework, retornando assim comente o resultado real do banco
+            serializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; // remove o loop da serialização do json
+            serializerSettings.ContractResolver = new DefaultContractResolver() // remove os "k__BackingField" que vem nas propriedades do json
+            {
+                IgnoreSerializableAttribute = true
+            };
 
             // Configuração do Cors
             config.EnableCors();
          
             // Web API routes
-            config.MapHttpAttributeRoutes();
-
-            var formatters = GlobalConfiguration.Configuration.Formatters;
-            formatters.Remove(formatters.XmlFormatter);
+            config.MapHttpAttributeRoutes();      
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
