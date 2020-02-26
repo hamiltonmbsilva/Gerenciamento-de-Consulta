@@ -7,6 +7,7 @@ using System.Data.Entity;
 
 namespace Repository.Models
 {
+    [Serializable]
     [Table("pacientes")]
     public class Paciente
     {

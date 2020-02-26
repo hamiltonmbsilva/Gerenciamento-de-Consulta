@@ -15,7 +15,7 @@ namespace WebApi.Service
 
 
 
-        public IQueryable<Agendamento> BuscarTodosOsAgendamento()
+        public IEnumerable<Agendamento> BuscarTodosOsAgendamento()
         {
             try
             {

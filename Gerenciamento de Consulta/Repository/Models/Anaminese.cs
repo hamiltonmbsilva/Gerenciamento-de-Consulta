@@ -1,10 +1,12 @@
 ﻿using RepositoryWebApi.Repository.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
 namespace Repository.Models
 {
+    [Serializable]
     [Table("anamineses")]
     public class Anaminese
     {

@@ -6,6 +6,7 @@ using System.Data.Entity;
 
 namespace RepositoryWebApi.Repository.Models
 {
+    [Serializable]
     [Table("agendamentos")]
     public class Agendamento
     {

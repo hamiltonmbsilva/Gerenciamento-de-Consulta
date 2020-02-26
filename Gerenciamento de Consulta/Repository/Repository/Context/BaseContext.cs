@@ -4,7 +4,7 @@ using System.Data.Entity;
 
 namespace Repository.Context
 {
-    public sealed class BaseContext : DbContext
+    public class BaseContext : DbContext
     {
         public BaseContext()
             : base("name=connectionString")
