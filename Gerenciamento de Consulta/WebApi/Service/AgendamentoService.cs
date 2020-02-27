@@ -21,7 +21,7 @@ namespace WebApi.Service
             try
             {
                 var todoAgendamento = repository.GetAll();
-                todoAgendamento = todoAgendamento.Include(x => x.Pacientes).Include(x => x.Anaminese);
+                //todoAgendamento = todoAgendamento.Include(x => x.Pacientes).Include(x => x.Anaminese);
                 return todoAgendamento;
             }
             catch(Exception ex)
@@ -32,15 +32,16 @@ namespace WebApi.Service
            
         }
 
-        public Agendamento BuscarAgendamentoPeloId(int? id)
+        public Agendamento BuscarAgendamentoPeloId(int id)
         {
 
             try
             {
                 if(id != 0)
-                {                   
-
-                    return repository.Find(id);
+                {
+                    var agendamento = repository.GetAll().Include(x => x.Pacientes).Include(x => x.Anaminese);
+                    return agendamento.FirstOrDefault(x => x.IdAgendamento == id);
+                    
                 }
 
                 return null;
@@ -54,33 +55,21 @@ namespace WebApi.Service
             
         }
 
-        public Agendamento SalvarAgendamento(List<Paciente> pacientes, List<Anaminese> anamineses)
+        public Agendamento SalvarAgendamento(Agendamento agendamento)
         {
             try
             {
-                if(pacientes == null && anamineses == null)
+                if(agendamento == null )
                 {
                     throw new Exception("Não é possivel salvar um agendamento vazio!");
                 }
 
-                else if(pacientes[0].Codigo != 0)
+                if(agendamento.PacienteId == 0)
                 {
-                    var paciente = new Paciente();
-                    var agendamento = new Agendamento();
-
-                    //Convertendo a data para remover informações desnecessarias - 2019/06/30T23:00:00
-                    paciente.DataDeNascimento = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy"));
-                    agendamento.DataConsulta = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy"));
-
-                    pacienteService.Save(paciente);
-
-                    Anaminese anaminese = new Anaminese();
-
-                    agendamento.Anaminese = anaminese;
-
-                    repository.Save(agendamento);
-
+                    throw new Exception("Não é possivel salvar um agendamento sem paciente!");
                 }
+
+                repository.Save(agendamento);
 
                 return null;
             }

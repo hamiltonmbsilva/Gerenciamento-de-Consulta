@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RepositoryWebApi.Repository.Models;
+using System;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -6,7 +7,7 @@ using WebApi.Service;
 
 namespace WebApi.Controllers
 {
-    [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+   
     //[Route("api/[controller]")]
     public class AgendamentoController : ApiController
     {
@@ -52,21 +53,20 @@ namespace WebApi.Controllers
             }
         }
 
-        //public IHttpActionResult PostAgendamento(Agendamento agendamento)
-        //{
-        //    try
-        //    {
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return BadRequest(ModelState);
-        //        }
-        //        service.SalvarAgendamento(agendamento);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+        [HttpPost]
+        public IHttpActionResult PostAgendamento(Agendamento agendamento)
+        {
+            try
+            {
+            
+                service.SalvarAgendamento(agendamento);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }

@@ -80,6 +80,7 @@ export default {
   mounted() {
     this.totalRows = this.agendamentos.length;
     AgendamentoService.listarAgendamentos().then(resposta =>{
+      debugger;
       resposta.data.forEach(element => {
         //configurar o formato de data
         element.dataConsulta = this.organizarData(element.dataConsulta);

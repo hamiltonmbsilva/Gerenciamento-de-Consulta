@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace WebApi
 {
@@ -20,8 +21,9 @@ namespace WebApi
             };
 
             // Configuração do Cors
-            config.EnableCors();
-         
+            var corsAttr = new EnableCorsAttribute("http://localhost:8080/", "", "");
+            config.EnableCors(corsAttr);
+
             // Web API routes
             config.MapHttpAttributeRoutes();      
 

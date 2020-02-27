@@ -7,7 +7,7 @@ using WebApi.Service;
 
 namespace WebApi.Controllers
 {
-    [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
+    
     public class AnamineseController : ApiController
     {
         private readonly AnamineseService service = new AnamineseService();
@@ -69,7 +69,7 @@ namespace WebApi.Controllers
                 }
             }
 
-            //DELETE: api/Anaminese/1
+            //DELETE: api/AnamineseAn/1
             public IHttpActionResult DeleteAnaminese(int? id)
             {
                 try
