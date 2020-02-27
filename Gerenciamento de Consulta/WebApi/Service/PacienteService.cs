@@ -61,7 +61,10 @@ namespace WebApi.Service
                     }
                     else
                     {
-                        //paciente.DataDeNascimento = Convert.ToDateTime(paciente.DataDeNascimento.ToString("dd/MM/yyyy"));
+                        //Transformar string para Enum para salvar
+                        //if(paciente.Planos == EnumPlanos.)
+                        //var minhaString = "Segundo";
+                        //MinhaEnum foo = (MinhaEnum)Enum.Parse(typeof(MinhaEnum), minhaString);
                         repository.Save(paciente);
                     }
                 }

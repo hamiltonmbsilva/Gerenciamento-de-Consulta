@@ -79,13 +79,13 @@ export default {
   },
   mounted() {
     this.totalRows = this.agendamentos.length;
-    debugger;
+    //debugger;
     AgendamentoService.listarAgendamentos()
       .then(resposta => {
         resposta.data.forEach(element => {
           //configurar o formato de data
 
-          debugger;
+          //debugger;
           var data = element.DataConsulta;
           element.DataConsulta = this.organizarData(data, true);
           element.Horario = this.organizarData(data, false);
