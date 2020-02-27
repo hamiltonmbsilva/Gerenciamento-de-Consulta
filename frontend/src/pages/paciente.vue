@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <Titulo texto="Listagem dos Agendamentos" />
+      <Titulo texto="Listagem dos Pacientes" />
     </div>
     <b-row>
       <b-col>
@@ -11,8 +11,8 @@
         </b-nav-form>
       </b-col>
       <b-col>
-        <router-link to="agendamentos/cadastrar">
-          <b-button variant="outline-success" class="btn-cadastrar">Cadastrar Agendamentos</b-button>
+        <router-link to="paciente/cadastrar">
+          <b-button variant="outline-success" class="btn-cadastrar">Cadastrar Pacientes</b-button>
         </router-link>
       </b-col>
     </b-row>
@@ -21,7 +21,7 @@
     <b-table
       show-empty
       stacked="md"
-      :items="agendamentos"
+      :items="pacientes"
       :fields="fields"
       :current-page="currentPage"
       :per-page="perPage"
@@ -49,22 +49,24 @@
 
     <!-- Info modal -->
     <b-modal
-      v-if="this.agendamento != null"
+      v-if="this.paciente != null"
       :id="infoModal.id"
       :title="infoModal.title"
       ok-only
       @hide="resetInfoModal"
     >
-      <p class="h6">{{fields[1].label +": "+ agendamento.dataConsulta}}</p>
-      <p class="h6">{{fields[2].label +": "+ agendamento.nomeProcedimento}}</p>
-      <p class="h6">{{fields[3].label +": "+ agendamento.horario}}</p>
+      <p class="h6">{{fields[1].label +": "+ paciente.Codigo}}</p>
+      <p class="h6">{{fields[2].label +": "+ paciente.Nome}}</p>
+      <p class="h6">{{fields[3].label +": "+ paciente.CPF}}</p>
+      <p class="h6">{{fields[3].label +": "+ paciente.DataDeNascimento}}</p>
+      <p class="h6">{{fields[3].label +": "+ paciente.Planos}}</p>
     </b-modal>
   </div>
 </template>
 
 <script>
 import Titulo from "../components/titulo.vue";
-import AgendamentoService from "../Service/agendamentoService";
+import PacienteService from "../Service/pacienteService";
 
 export default {
   computed: {
@@ -78,20 +80,18 @@ export default {
     }
   },
   mounted() {
-    this.totalRows = this.agendamentos.length;
-    debugger;
-    AgendamentoService.listarAgendamentos()
+    this.totalRows = this.pacientes.length;
+    PacienteService.listar()
       .then(resposta => {
         resposta.data.forEach(element => {
           //configurar o formato de data
-
-          debugger;
-          var data = element.DataConsulta;
-          element.DataConsulta = this.organizarData(data, true);
-          element.Horario = this.organizarData(data, false);
+          element.DataDeNascimento = this.organizarData(
+            element.DataDeNascimento,
+            true
+          );
         });
 
-        this.agendamentos = resposta.data;
+        this.pacientes = resposta.data;
       })
       .catch(resposta => {
         console.log(resposta);
@@ -99,27 +99,31 @@ export default {
   },
   data() {
     return {
-      agendamentos: [],
+      pacientes: [],
       fields: [
         {
-          key: "IdAgendamento",
+          key: "IdPaciente",
           label: "Id"
         },
         {
-          key: "NomeProcedimento",
-          label: "Nome do procedimento"
+          key: "Codigo",
+          label: "Código do paciente"
         },
         {
-          key: "Pacientes.Nome",
+          key: "Nome",
           label: "Nome do paciente"
         },
         {
-          key: "DataConsulta",
-          label: "Data da Consulta"
+          key: "CPF",
+          label: "Cpf"
         },
         {
-          key: "Horario",
-          label: "Horario da Consulta"
+          key: "DataDeNascimento",
+          label: "Data de nascimento"
+        },
+        {
+          key: "Planos",
+          label: "Planos"
         },
         { key: "actions", label: "Ações" }
       ],
@@ -132,14 +136,14 @@ export default {
         title: "",
         content: ""
       },
-      agendamento: null
+      paciente: null
     };
   },
   methods: {
     info(item, index, button) {
-      this.agendamento = item;
+      this.paciente = item;
 
-      this.infoModal.title = this.agendamento.idAgendamento;
+      this.infoModal.title = this.paciente.IdPaciente;
       this.infoModal.content = JSON.stringify(item, null, 2);
       this.$root.$emit("bv::show::modal", this.infoModal.id, button);
     },

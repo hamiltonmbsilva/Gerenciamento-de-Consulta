@@ -3,16 +3,10 @@
     <b-navbar type="dark" variant="dark">
       <b-navbar-nav>
         <b-navbar-brand>
-          <router-link class="link" to="/">Home</router-link>
-        </b-navbar-brand>
-        <b-navbar-brand>
-          <router-link class="link" to="/agendamentos">Todos Agendamentos</router-link>
+          <router-link class="link" to="/agendamentos">Agendamentos</router-link>
         </b-navbar-brand>
         <b-nav-item>
-          <router-link class="link" to="">Paciente</router-link>
-        </b-nav-item>
-        <b-nav-item>
-          <router-link class="link" to="">Anaminese</router-link>
+          <router-link class="link" to="/paciente">Paciente</router-link>
         </b-nav-item>
       </b-navbar-nav>
     </b-navbar>
@@ -33,7 +27,7 @@ export default {
   color: white;
   text-decoration: none;
   font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .link:hover {

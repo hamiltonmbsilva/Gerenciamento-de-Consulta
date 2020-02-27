@@ -2,11 +2,11 @@ import { http } from "./config.js";
 
 export default {
     listarAgendamentos: () => {
-        return http.get("/Agendamentos");
+        return http.get("/Agendamento");
     },
 
     salvar: agendamento => {
-        return http.post("/Agendamentos", agendamento);
+        return http.post("/Agendamento", agendamento);
     }
 
 };

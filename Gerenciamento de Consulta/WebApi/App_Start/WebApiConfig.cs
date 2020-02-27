@@ -21,7 +21,7 @@ namespace WebApi
             };
 
             // Configuração do Cors
-            var corsAttr = new EnableCorsAttribute("http://localhost:8080/", "", "");
+            var corsAttr = new EnableCorsAttribute("http://localhost:8080", "", "");
             config.EnableCors(corsAttr);
 
             // Web API routes

@@ -21,7 +21,7 @@ namespace WebApi.Service
             try
             {
                 var todoAgendamento = repository.GetAll();
-                //todoAgendamento = todoAgendamento.Include(x => x.Pacientes).Include(x => x.Anaminese);
+                todoAgendamento = todoAgendamento.Include(x => x.Pacientes);
                 return todoAgendamento;
             }
             catch(Exception ex)
