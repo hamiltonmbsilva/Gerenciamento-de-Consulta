@@ -65,17 +65,10 @@
       type="submit" 
       variant="success"
       style="margin-right: 10px;"
-      >Salvar</b-button>
-
-      <!-- <b-button 
-      type="reset" 
-      variant="danger"
-      >Resertar</b-button> -->
+      >Salvar</b-button>   
 
     </b-form>
-    <!-- <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
-    </b-card> -->
+  
   </div>
 </template>
 
