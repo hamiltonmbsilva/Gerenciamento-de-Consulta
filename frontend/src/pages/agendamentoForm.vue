@@ -93,6 +93,7 @@
 
 <script>
 import PacienteService from "../Service/pacienteService";
+import AgendamentoService from "../Service/agendamentoService";
 
   export default {    
     
@@ -144,7 +145,19 @@ import PacienteService from "../Service/pacienteService";
           this.show = true;
         });
       },
+    },
+
+    salvar(){
+      AgendamentoService.salvar(this.form, this.types, this.options)
+      .then(() => {
+              alert("Agendamento salvo com sucesso!");
+              this.$router.replace({ path: "/paciente" });
+            })
+            .catch(error => {
+              alert("Erro ao salvar Agendamento!\n" + error);              
+            });
     }
+    
     
   };
 
