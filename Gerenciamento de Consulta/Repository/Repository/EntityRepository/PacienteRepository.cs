@@ -18,7 +18,7 @@ namespace RepositoryWebApi.Repository.EntityRepository
 
         public IEnumerable<object> GetPacientesSelect()
         {
-            var selects = GetAll().Select(x => new { Id = x.IdPaciente, Nome = x.Nome });
+            var selects = GetAll().Select(x => new { Id = x.IdPaciente, Nome = x.Nome }); 
 
             return selects;
         }

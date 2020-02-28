@@ -29,8 +29,9 @@ namespace WebApi.Controllers
                 }
             }
 
-            //POST: api/Anaminese
-            public IHttpActionResult PostAnaminise(Anaminese anaminese)
+        //POST: api/Anaminese
+        [HttpPost]
+        public IHttpActionResult PostAnaminise(Anaminese anaminese)
             {
                 try
                 {
@@ -49,8 +50,9 @@ namespace WebApi.Controllers
                 }
             }
 
-            //PUT: api/Anaminese/1
-            public IHttpActionResult PutAnaminese(Anaminese anaminese)
+        //PUT: api/Anaminese/1
+        [HttpPut]
+        public IHttpActionResult PutAnaminese(Anaminese anaminese)
             {
                 try
                 {
@@ -69,8 +71,9 @@ namespace WebApi.Controllers
                 }
             }
 
-            //DELETE: api/AnamineseAn/1
-            public IHttpActionResult DeleteAnaminese(int? id)
+        //DELETE: api/AnamineseAn/1
+        [HttpDelete]
+        public IHttpActionResult DeleteAnaminese(int? id)
             {
                 try
                 {
