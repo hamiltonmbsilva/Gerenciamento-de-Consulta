@@ -2,7 +2,7 @@
 {
     public enum EnumPlanos
     {
-        Unimed,
+        UNIMED,
         AMIL, 
         SAUDE_SERVIDOR,
         BRADESCO,

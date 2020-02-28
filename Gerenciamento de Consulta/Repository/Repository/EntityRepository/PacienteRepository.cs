@@ -1,8 +1,8 @@
-﻿
-using Repository.Models;
+﻿using Repository.Models;
 using Repository.Context;
 using System.Data.Entity;
-
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RepositoryWebApi.Repository.EntityRepository
 {
@@ -14,6 +14,13 @@ namespace RepositoryWebApi.Repository.EntityRepository
         {
             ctx.Entry(obj).State = EntityState.Modified;
             ctx.SaveChanges();
+        }
+
+        public IEnumerable<object> GetPacientesSelect()
+        {
+            var selects = GetAll().Select(x => new { Id = x.IdPaciente, Nome = x.Nome });
+
+            return selects;
         }
     }
 }

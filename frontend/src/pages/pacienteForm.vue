@@ -34,7 +34,7 @@
         <b-form-input
           id="input-4"
           v-model="form.Senha"
-          type="number"
+          type="password"
           required
           placeholder="Digite a Senha"
         ></b-form-input>
@@ -84,9 +84,9 @@ import PacienteService from "../Service/pacienteService";
           CPF: '',
           Senha: '',
           DataDeNascimento: '',
-          Planos: null          
+          Planos: ''          
         },        
-        planos: [{value: '' }, 'UNIMED', 'AMIL', 'SAUDE_SERVIDOR', 'BRADESCO', 'OUTROS'],
+        planos: ['UNIMED', 'AMIL', 'SAUDE_SERVIDOR', 'BRADESCO', 'OUTROS'],
         show: true
       }
     },    
@@ -122,8 +122,7 @@ import PacienteService from "../Service/pacienteService";
               this.$router.replace({ path: "/paciente" });
             })
             .catch(error => {
-              alert("Erro ao salvar paciente!\n" + error);
-              this.$router.replace({ path: "/paciente" });
+              alert("Erro ao salvar paciente!\n" + error);              
             });
           }else{
             alert("Não é possivel salvar um paciente com dados invalidos!");

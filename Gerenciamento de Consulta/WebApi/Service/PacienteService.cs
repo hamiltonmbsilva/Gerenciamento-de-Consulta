@@ -25,6 +25,19 @@ namespace WebApi.Service
             
         }
 
+        public IEnumerable<object> GetPacienteSelect()
+        {
+            try
+            {
+                return repository.GetPacientesSelect();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
         public Paciente SalvarPaciente(Paciente paciente)
         {
             try
@@ -66,6 +79,9 @@ namespace WebApi.Service
                         //var minhaString = "Segundo";
                         //MinhaEnum foo = (MinhaEnum)Enum.Parse(typeof(MinhaEnum), minhaString);
                         repository.Save(paciente);
+
+                        return paciente;
+                        
                     }
                 }
                 return null;

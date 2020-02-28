@@ -2,15 +2,14 @@
 using System;
 using System.Linq;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using WebApi.Service;
 
 namespace WebApi.Controllers
 {
-    
+
     public class PacientesController : ApiController    {
 
-        private readonly PacienteService service = new PacienteService();
+        private readonly PacienteService service = new PacienteService();       
 
         //GET: api/Pacientes  
         [HttpGet]
@@ -19,6 +18,23 @@ namespace WebApi.Controllers
             try
             {
                 var pacientes = service.BuscarTodosOsPacinetes().ToList();
+
+                return Ok(pacientes);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        //GET: api/Pacientes  
+        [HttpGet]
+        [Route ("api/Pacientes/Select")]
+        public IHttpActionResult GetPacientesSelect()
+        {
+            try
+            {
+                var pacientes = service.GetPacienteSelect().ToList();
 
                 return Ok(pacientes);
             }
@@ -39,7 +55,13 @@ namespace WebApi.Controllers
                     return BadRequest(ModelState);
                 }
 
-                service.SalvarPaciente(paciente);
+                var retorno = service.SalvarPaciente(paciente);
+
+                if(retorno == null)
+                {
+                    return BadRequest("Erro ao salvar");
+
+                }
 
                 return Ok(paciente);
             }

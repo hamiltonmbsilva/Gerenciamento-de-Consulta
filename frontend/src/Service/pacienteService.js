@@ -7,5 +7,9 @@ export default {
 
   salvar: paciente => {
     return http.post("/Pacientes", paciente);
+  },
+
+  listarPaciente: () => {
+    return http.get("/Pacientes/Select");
   }
 };
