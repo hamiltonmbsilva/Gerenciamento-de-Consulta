@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+    <b-form v-if="show">
       <b-form-group id="input-group-2" label="Codigo:" label-for="input-1">
         <b-form-input
           id="input-1"
