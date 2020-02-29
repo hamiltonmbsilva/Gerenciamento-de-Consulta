@@ -4,9 +4,12 @@ import BootstrapVue from "bootstrap-vue";
 import VueRouter from "vue-router";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+import VueMask from 'v-mask';
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
+Vue.use(VueMask);
+
 
 Vue.config.productionTip = false
 

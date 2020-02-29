@@ -50,6 +50,14 @@ namespace WebApi.Controllers
         {
             try
             {
+                
+                    //Removendo os espações antes e depois da string
+                    paciente.CPF = paciente.CPF.Trim();
+
+                    //Esta subistituindo o ('.') por espaço e o ('-') tambem por espaço
+                    paciente.CPF = paciente.CPF.Replace(".", "").Replace("-", ""); 
+                
+
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);

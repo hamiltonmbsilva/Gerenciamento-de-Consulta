@@ -1,124 +1,91 @@
 <template>
-  <div>
-    <b-form v-if="show" @submit.prevent="salvar">
-      <b-form-group
-        id="input-group-2"
-        label="Data da Consulta:"
-        label-for="input-1"
-      >
-        <div>
-          <b-form-datepicker
-            id="example-datepicker"
-            v-model="agendamento.DataConsulta"
-            class="mb-2"
-          >
-          </b-form-datepicker>
+ <div class="container register-form" v-if="show" @submit.prevent="salvar">
+            <div class="form form-redondamento">
+                <div class="note">
+                    <p>Cadastro de Agendamento</p>
+                </div>
+
+                <div class="form-content">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                          <div class="form-group">         
+                                <b-form-datepicker class="form-control" placeholder="Digite a data da Consulta"
+                                id="example-datepicker" 
+                                v-model="agendamento.DataConsulta" 
+                                >
+                                </b-form-datepicker>         
+                            </div> 
+
+                            <div class="form-group">
+                                <b-form-input class="form-control" 
+                                  id="input-2"
+                                  v-model="horario"
+                                  v-mask="'##:##'"
+                                  required
+                                  placeholder="Digite o Horario da Consulta"
+                                ></b-form-input>
+                                <p v-if="erroHorario" style="color:red">{{erroHorario}}</p>
+                            </div>  
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Digite o CPF do Paciente"  required/>
+                            </div>                            
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Digite o Nome do Procedimento" v-model="agendamento.NomeProcedimento" required/>
+                            </div>
+
+                            <div class="form-group" label="Lista de Pacientes:">
+                                <b-form-select class="form-control" v-model="paciente" :options="options" :select-size="4" required></b-form-select>
+                                  <div class="mt-3">
+                                    Paciente Selecionados:
+                                    <strong>{{ paciente }}</strong>
+                                  </div>
+                            </div>
+                         
+                        </div>
+                    </div>
+                </div>  
+
+                    <div class="note">
+                      <p>Cadastrar Anaminese</p>
+                    </div>
+
+                  <div class="form-content">
+                      <div class="row">
+                          <div class="col-md-6">
+
+                            <div class="form-group">         
+                                  <b-form-datepicker class="form-control" placeholder="Digite os Sintomas"
+                                  id="example-datepicker" 
+                                  v-model="agendamento.Anaminese.Sintoma" 
+                                  >
+                                  </b-form-datepicker>         
+                              </div> 
+
+                              <div class="form-group">
+                                <b-form-select class="form-control"
+                                    id="input-6"
+                                    v-model="agendamento.Anaminese.PartesCorpo"
+                                    :options="partesCorpo"
+                                    required
+                                  ></b-form-select>
+                              </div>                  
+                          </div>
+
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Digite as Doenças Exixtentes" v-model="agendamento.Anaminese.DoencaExistente" required/>
+                              </div>
+                          </div>
+                      </div>                    
+                  </div>
+              <button type="submit" class="btnSubmitAgendamento" @click="salvar()" variant="success">Salvar</button>
         </div>
-      </b-form-group>
-
-      <b-form-group
-        id="input-group-2"
-        label="Nome do Procedimento:"
-        label-for="input-2"
-      >
-        <b-form-input
-          id="input-2"
-          v-model="agendamento.NomeProcedimento"
-          required
-          placeholder="Digite o Nome do Procedimento"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-group
-        id="input-group-2"
-        label="Horario da Consulta:"
-        label-for="input-2"
-      >
-        <b-row class="my-1" v-for="type in types" :key="type">
-          <b-col sm="12">
-            <b-form-input :id="`type-${type}`" :type="type"></b-form-input>
-          </b-col>
-        </b-row>
-      </b-form-group>
-
-      <!-- <b-form-group id="input-group-2" label="Lista de Pacientes:" label-for="input-2">
-            
-          <b-form-select v-model="paciente" :options="options"  :select-size="10" required></b-form-select>
-          <div class="mt-3">
-            Paciente Selecionados:
-            <strong>{{ paciente }}</strong>
-          </div> 
-            
-      </b-form-group> -->
-
-      <b-form-group id="listaPaciente" label="Paciente:" label-for="input-2">
-        <b-form-select
-          v-model="paciente"
-          :options="options"
-          :select-size="10"
-          required
-        ></b-form-select>
-        <div class="mt-3">
-          Paciente Selecionados:
-          <strong>{{ paciente }}</strong>
-        </div>
-      </b-form-group>
-
-      <br />
-      <br />
-      <label for="">
-        <h2>Cadastrar Anaminese</h2>
-      </label>
-      <br />
-
-      <b-form-group
-        id="input-group-2"
-        label="Sintomas declarados:"
-        label-for="input-2"
-      >
-        <b-form-input
-          id="input-2"
-          v-model="agendamento.Anaminese.Sintoma"
-          required
-          placeholder="Digite o Sintoma relatado"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-group
-        id="input-group-2"
-        label="Doenças Existentes:"
-        label-for="input-2"
-      >
-        <b-form-input
-          id="input-2"
-          v-model="agendamento.Anaminese.DoencaExistente"
-          required
-          placeholder="Digite a doença exixstente"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-group
-        id="input-group-3"
-        label="Partes do Corpos:"
-        label-for="input-6"
-      >
-        <b-form-select
-          id="input-6"
-          v-model="agendamento.Anaminese.PartesCorpo"
-          :options="partesCorpo"
-          required
-        ></b-form-select>
-      </b-form-group>
-
-      <b-button
-        @click="salvar()"
-        type="submit"
-        variant="success"
-        style="margin-right: 10px;"
-        >Salvar</b-button
-      >
-    </b-form>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -134,13 +101,13 @@ export default {
       agendamento: {
         DataConsulta: "",
         NomeProcedimento: "",
-        Horario: "types",
-        PacienteId: "" ,
+        Horario: "",
+        PacienteId: "",
         Anaminese: {
           Sintoma: "",
           DoencaExistente: "",
           ParteCorpo: ""
-        }  
+        }
       },
 
       partesCorpo: [
@@ -151,12 +118,19 @@ export default {
       ],
 
       show: true,
-      types: ["time"]
+      horario: "",
+      erroHorario: ""
     };
   },
 
   mounted() {
     this.carregarSelect();
+  },
+
+  watch: {
+    horario() {
+      this.Verifica_Hora();
+    }
   },
 
   methods: {
@@ -187,18 +161,88 @@ export default {
     },
 
     salvar() {
+      if (this.erroHorario) {
+        this.horario.focus();
+        return;
+      }
+
+      this.agendamento.Horario = this.horario;
+
       var valores = String(this.paciente).split("-");
       this.agendamento.PacienteId = valores[0];
 
       AgendamentoService.salvar(this.agendamento)
         .then(() => {
           alert("Agendamento salvo com sucesso!");
-          this.$router.replace({ path: "/agendamento" });
+          this.$router.replace({ path: "/agendamentos" });
         })
         .catch(error => {
           alert("Erro ao salvar Agendamento!\n" + error);
         });
+    },
+
+    Verifica_Hora() {
+      var hrs = this.horario.substring(0, 2);
+      var min = this.horario.substring(3, 5);
+
+      var estado = "";
+      if (hrs < 0 || hrs > 23 || min < 0 || min > 59) {
+        estado = "errada";
+      }
+
+      if (this.horario == "") {
+        estado = "errada";
+      }
+      if (estado == "errada") {
+        this.erroHorario = "Hora invalida!";
+        this.horario.focus();
+      } else {
+        this.erroHorario = "";
+      }
     }
   }
 };
 </script>
+<style>
+.form
+{  
+  border: 2px solid #ccc;
+  border-radius:10px !important;
+  font-family: Arial, Helvetica, sans-serif;
+}
+  .note
+{
+    text-align: center;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 80px;
+    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+    color: #fff;
+    font-weight: bold;
+    line-height: 80px;
+    border: 2px solid #ccc;
+    border-radius:10px !important;
+}
+.form-content
+{
+    padding: 5%;
+    border: 0px solid #ced4da;
+    margin-bottom: 2%;
+}
+.form-control{
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius:1.5rem;
+}
+.btnSubmitAgendamento
+{
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 20%;
+    cursor: pointer;
+    background: #0062cc;
+    color: #fff;    
+    margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+</style>

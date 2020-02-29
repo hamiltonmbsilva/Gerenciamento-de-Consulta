@@ -1,79 +1,59 @@
 <template>
-  <div>
-    <b-form v-if="show">
-      <b-form-group id="input-group-2" label="Codigo:" label-for="input-1">
-        <b-form-input
-          id="input-1"
-          v-model="form.Codigo"
-          type="number"
-          required
-          placeholder="Digite o Codigo do paciente"
-        ></b-form-input>
-      </b-form-group>
+<div class="container register-form" v-if="show">
+            <div class="form form-redondamento">
+                <div class="note">
+                    <p>Cadastro de Paciente</p>
+                </div>
 
-      <b-form-group id="input-group-2" label="Seu Nome:" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          v-model="form.Nome"
-          required
-          placeholder="Digite o seu Nome"
-        ></b-form-input>
-      </b-form-group>
+                <div class="form-content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder="Digite o Codigo da Paciente" v-model="form.Codigo" required/>
+                            </div>  
 
-      <b-form-group id="input-group-2" label="CPF:" label-for="input-3">
-        <b-form-input
-          id="input-3"
-          v-model="form.CPF"
-          type="number"
-          required
-          placeholder="Digite o CPF"
-        ></b-form-input>
-      </b-form-group>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Digite o CPF do Paciente" v-model="form.CPF" required/>
+                            </div>
+                            
+                              <div class="form-group">         
+                                <b-form-datepicker class="form-control" placeholder="Digite a data Aniversario"
+                                id="example-datepicker" 
+                                v-model="form.DataDeNascimento" 
+                                >
+                                </b-form-datepicker>         
+                              </div> 
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Digite o Nome do Paciente" v-model="form.Nome" required/>
+                            </div>
 
-      <b-form-group id="input-group-2" label="Senha:" label-for="input-4">
-        <b-form-input
-          id="input-4"
-          v-model="form.Senha"
-          type="password"
-          required
-          placeholder="Digite a Senha"
-        ></b-form-input>
-      </b-form-group>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Digite a senha do Paciente" v-model="form.Senha" required/>
+                            </div>
 
-      <b-form-group id="input-group-2" label="Data de Nascimento:" label-for="input-5">
-        <div>         
-          <b-form-datepicker 
-          id="example-datepicker" 
-          v-model="form.DataDeNascimento" 
-          class="mb-2">
-          </b-form-datepicker>         
-        </div> 
-      </b-form-group>
-
-      <b-form-group id="input-group-3" label="Planos:" label-for="input-6">
-        <b-form-select
-          id="input-6"
-          v-model="form.Planos"
-          :options="planos"
-          required
-        ></b-form-select>
-      </b-form-group>
-      
-
-      <b-button
-      @click="salvar()"     
-      type="submit" 
-      variant="success"
-      style="margin-right: 10px;"
-      >Salvar</b-button>   
-
-    </b-form>
+                            <div class="form-group">
+                                <b-form-select class="form-control" placeholder="Escolha um Plano"
+                                      id="input-6"  
+                                      v-model="form.Planos"
+                                      :options="planos"
+                                      required
+                                  ></b-form-select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btnSubmit" @click="salvar()" variant="success">Salvar</button>
+                </div>
+            </div>
+        </div>
   
-  </div>
 </template>
 
 <script>
 import PacienteService from "../Service/pacienteService";
+
 
   export default {
     data() {
@@ -159,3 +139,46 @@ import PacienteService from "../Service/pacienteService";
     }
   }
 </script>
+<style>
+.form
+{  
+  border: 2px solid #ccc;
+  border-radius:10px !important;
+  font-family: Arial, Helvetica, sans-serif;
+}
+  .note
+{
+    text-align: center;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 80px;
+    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+    color: #fff;
+    font-weight: bold;
+    line-height: 80px;
+    border: 2px solid #ccc;
+    border-radius:10px !important;
+}
+.form-content
+{
+    padding: 5%;
+    border: 0px solid #ced4da;
+    margin-bottom: 2%;
+}
+.form-control{
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius:1.5rem;
+}
+.btnSubmit
+{
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 20%;
+    cursor: pointer;
+    background: #0062cc;
+    color: #fff;
+    margin-top: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+</style>

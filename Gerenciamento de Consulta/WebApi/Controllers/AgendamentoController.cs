@@ -12,6 +12,7 @@ namespace WebApi.Controllers
     public class AgendamentoController : ApiController
     {
         private readonly AgendamentoService service = new AgendamentoService();
+        private readonly AnamineseService anaminese = new AnamineseService();
 
         //GET: api/Agendamento     
         public IHttpActionResult GetAll()
@@ -58,7 +59,7 @@ namespace WebApi.Controllers
         {
             try
             {
-            
+                    
                 service.SalvarAgendamento(agendamento);
                 return Ok();
             }
