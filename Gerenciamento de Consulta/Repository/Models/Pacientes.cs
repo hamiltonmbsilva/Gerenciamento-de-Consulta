@@ -35,7 +35,7 @@ namespace Repository.Models
         public EnumPlanos Planos { get; set; }
 
         //Relacionamento
-        public virtual ICollection<Agendamento> Agendamentos { get; set; } = new List<Agendamento>();
+        public virtual IList<Agendamento> Agendamentos { get; set; }
 
         public static void Map(DbModelBuilder modelBuilder)
         {

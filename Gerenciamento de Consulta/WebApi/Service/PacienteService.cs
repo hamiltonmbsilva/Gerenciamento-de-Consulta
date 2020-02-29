@@ -1,4 +1,6 @@
-﻿using Repository.Models;
+﻿using Repository.DTO;
+using Repository.Map;
+using Repository.Models;
 using RepositoryWebApi.Repository.EntityRepository;
 using System;
 using System.Collections.Generic;
@@ -198,11 +200,17 @@ namespace WebApi.Service
             {
                 throw ex;
             }
-
-
             
         }
 
+        public PacienteListDTO DadosDoPaciente(int codigo)
+        {
+            var paciente = repository.DadosDoPaciente(codigo);
+
+            var map = MapConfig.GetMap();// pega a configuração do automapper
+
+            return map.Map<Paciente, PacienteListDTO>(paciente);// realiza o mapeamento
+        }
 
     }
 }

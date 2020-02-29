@@ -120,5 +120,25 @@ namespace WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [Route("api/pacientes/dados")]
+        [HttpGet]
+        public IHttpActionResult AgendamentosDoDia(int codigo)
+        {
+            try
+            {
+                if (codigo == 0)
+                {
+                    return BadRequest("Código inválido");
+                }
+
+                var paciente = service.DadosDoPaciente(codigo);
+                return Ok(paciente);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

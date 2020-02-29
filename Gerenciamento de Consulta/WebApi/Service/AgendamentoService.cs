@@ -1,4 +1,6 @@
-﻿using Repository.Models;
+﻿using Repository.DTO;
+using Repository.Map;
+using Repository.Models;
 using RepositoryWebApi.Repository.EntityRepository;
 using RepositoryWebApi.Repository.Models;
 using System;
@@ -11,10 +13,6 @@ namespace WebApi.Service
     public class AgendamentoService
     {
         private AgendamentoRepository repository = new AgendamentoRepository();
-        private PacienteRepository pacienteService = new PacienteRepository();
-        private AnamineseRepository anamineseService = new AnamineseRepository();
-
-
 
         public IEnumerable<Agendamento> BuscarTodosOsAgendamento()
         {
@@ -134,7 +132,41 @@ namespace WebApi.Service
             }
         }
 
+        public List<AgendamentoListDTO> AgendamentosDoDia(DateTime dia)
+        {
+            var agendamentos = repository.AgendamentosDoDia(dia).ToList();
 
+            var map = MapConfig.GetMap();// pega a configuração do automapper
+
+            var listDto = new List<AgendamentoListDTO>();
+
+            foreach (var agendamento in agendamentos)
+            {
+                var mapeado = map.Map<Agendamento, AgendamentoListDTO>(agendamento);// realiza o mapeamento
+
+                listDto.Add(mapeado);
+            }
+
+            return listDto;
+        }
+
+        public List<AgendamentoListDTO> AgendamentosPeriodoPlano(DateTime diaInicial, DateTime diaFinal, EnumPlanos plano)
+        {
+            var agendamentos = repository.AgendamentosPeriodoPlano(diaInicial, diaFinal, plano).ToList();
+
+            var map = MapConfig.GetMap();// pega a configuração do automapper
+
+            var listDto = new List<AgendamentoListDTO>();
+
+            foreach (var agendamento in agendamentos)
+            {
+                var mapeado = map.Map<Agendamento, AgendamentoListDTO>(agendamento);// realiza o mapeamento
+
+                listDto.Add(mapeado);
+            }
+
+            return listDto;
+        }
 
 
     }

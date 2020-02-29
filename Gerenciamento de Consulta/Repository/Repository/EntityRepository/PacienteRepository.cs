@@ -22,5 +22,24 @@ namespace RepositoryWebApi.Repository.EntityRepository
 
             return selects;
         }
+
+        public Paciente DadosDoPaciente(int codigo)
+        {
+            var paciente = GetAll()
+                .Include(x => x.Agendamentos)
+                .FirstOrDefault(x => x.Codigo == codigo);
+
+            var agendamentoRepository = new AgendamentoRepository();
+
+            foreach (var item in paciente.Agendamentos)
+            {
+                item.Anaminese = agendamentoRepository
+                    .GetAll()
+                    .Include(x => x.Anaminese)
+                    .FirstOrDefault(x => x.IdAgendamento == item.IdAgendamento).Anaminese;
+            }
+
+            return paciente;
+        }
     }
 }

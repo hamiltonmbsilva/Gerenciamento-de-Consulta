@@ -6,8 +6,7 @@ using System.Web.Http.Cors;
 using WebApi.Service;
 
 namespace WebApi.Controllers
-{
-    
+{    
     public class AnamineseController : ApiController
     {
         private readonly AnamineseService service = new AnamineseService();
