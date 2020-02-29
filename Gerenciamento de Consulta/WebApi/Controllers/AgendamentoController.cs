@@ -11,9 +11,10 @@ namespace WebApi.Controllers
     //[Route("api/[controller]")]
     public class AgendamentoController : ApiController
     {
-        private readonly AgendamentoService service = new AgendamentoService();        
+        private readonly AgendamentoService service = new AgendamentoService();
 
-        //GET: api/Agendamento     
+        //GET: api/Agendamento
+        [HttpGet]
         public IHttpActionResult GetAll()
         {
             try
@@ -29,6 +30,8 @@ namespace WebApi.Controllers
         }
 
         //GET: api/Agendamento/1
+        [Route("api/agendamento/id")]
+        [HttpGet]
         public IHttpActionResult GetById( int id)
         {
             try
@@ -53,6 +56,7 @@ namespace WebApi.Controllers
             }
         }
 
+        // POST: api/Agendamento
         [HttpPost]
         public IHttpActionResult PostAgendamento(Agendamento agendamento)
         {
@@ -67,6 +71,29 @@ namespace WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        // PUT: api/Agendamento/1
+        //[Route("api/agendamento/alterar/id")]
+        [HttpPut]
+        public IHttpActionResult PutAgendamento(int id, Agendamento agendamento)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                service.AlterarAgendamento(agendamento);
+
+                return Ok(agendamento);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
         [Route("api/agendamento/dia")]
         [HttpGet]

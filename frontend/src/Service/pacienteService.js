@@ -11,5 +11,19 @@ export default {
 
   listarPaciente: () => {
     return http.get("/Pacientes/Select");
+  },
+
+  excluirPaciente: id =>{
+    return http.delete("/Pacientes/"+id);
+  },
+
+  alterarPaciente: paciente =>{
+    var url = `/Pacientes/${paciente.IdPaciente}`;
+    return http.put(url, paciente);
+  },
+
+  buscarPacientePeloId: id =>{
+    return http.get("/Pacientes/"+id);
   }
+
 };

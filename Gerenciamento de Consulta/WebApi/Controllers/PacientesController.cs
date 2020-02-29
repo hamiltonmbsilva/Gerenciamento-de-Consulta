@@ -27,6 +27,33 @@ namespace WebApi.Controllers
             }
         }
 
+        //GET: api/Pacinetes/1
+        //[Route("api/Pacinetes/id")]
+        [HttpGet]
+        public IHttpActionResult GetById(int id)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var paciente = service.BuscarPeloId(id);
+
+                if (paciente == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(paciente);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         //GET: api/Pacientes  
         [HttpGet]
         [Route ("api/Pacientes/Select")]
@@ -80,6 +107,7 @@ namespace WebApi.Controllers
         }
 
         //PUT: api/Pacientes/1
+        //[Route("api/paciente/alterar/id")]
         [HttpPut]
         public IHttpActionResult PutPaciente(int id, Paciente paciente)
         {
@@ -101,8 +129,9 @@ namespace WebApi.Controllers
         }
 
         //DELETE: api/Pacientes/1
+        //[Route("api/Pacientes/id")]
         [HttpDelete]
-        public IHttpActionResult DeletePaciente(int? id)
+        public IHttpActionResult DeletePaciente(int id)
         {
             try
             {
@@ -121,7 +150,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [Route("api/pacientes/dados")]
+        [Route("api/Pacientes/dados")]
         [HttpGet]
         public IHttpActionResult AgendamentosDoDia(int codigo)
         {

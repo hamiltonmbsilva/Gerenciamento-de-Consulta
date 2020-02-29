@@ -139,6 +139,7 @@ import PacienteService from "../Service/pacienteService";
     }
   }
 </script>
+
 <style>
 .form
 {  

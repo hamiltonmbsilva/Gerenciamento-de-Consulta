@@ -33,7 +33,18 @@
     >
       <template slot="actions" slot-scope="row">
         <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">Detalhes</b-button>
+        <b-button
+        variant="outline-success"
+        class="btn-alterar"
+        @click="alterar()"
+      >Alterar produto</b-button>
+      <b-button
+        variant="outline-danger"
+        class="btn-excluir"
+        @click="excluir()"
+      >Excluir produto</b-button>
       </template>
+      
     </b-table>
 
     <b-row>
@@ -58,6 +69,8 @@
       <p class="h6">{{fields[1].label +": "+ agendamento.dataConsulta}}</p>
       <p class="h6">{{fields[2].label +": "+ agendamento.nomeProcedimento}}</p>
       <p class="h6">{{fields[3].label +": "+ agendamento.horario}}</p>
+
+      
     </b-modal>
   </div>
 </template>
@@ -182,6 +195,15 @@ export default {
   margin-bottom: 15px;
 }
 .btn-cadastrar {
+  float: right;
+}
+.btn-alterar {
+  margin-top: 15px;
+  float: left;
+}
+
+.btn-excluir {
+  margin-top: 15px;
   float: right;
 }
 </style>

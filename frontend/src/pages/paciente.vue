@@ -31,9 +31,20 @@
       hover
       dark
     >
-      <template slot="actions" slot-scope="row">
+      <!-- <template slot="actions" slot-scope="row">       
         <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">Detalhes</b-button>
+      </template> -->
+      
+      <template v-slot:cell(actions)="row">
+
+        <b-button size="sm" variant="outline-danger" class="btn-excluir mr-1" @click="excluir(paciente)">Excluir</b-button>
+
+        <b-button size="sm" variant="outline-primary" class="btn-detalhes mr-3" @click="info(row.item, row.index, $event.target)">Detalhes </b-button> 
+
+        <b-button size="sm" variant="outline-success" class="btn-alterar " @click="alterar(paciente)">Alterar</b-button>
+      
       </template>
+
     </b-table>
 
     <b-row>
@@ -58,8 +69,9 @@
       <p class="h6">{{fields[1].label +": "+ paciente.Codigo}}</p>
       <p class="h6">{{fields[2].label +": "+ paciente.Nome}}</p>
       <p class="h6">{{fields[3].label +": "+ paciente.CPF}}</p>
-      <p class="h6">{{fields[3].label +": "+ paciente.DataDeNascimento}}</p>
-      <p class="h6">{{fields[3].label +": "+ paciente.Planos}}</p>
+      <p class="h6">{{fields[4].label +": "+ paciente.DataDeNascimento}}</p>
+      <p class="h6">{{fields[5].label +": "+ paciente.Planos}}</p>  
+    
     </b-modal>
   </div>
 </template>
@@ -81,22 +93,10 @@ export default {
   },
   mounted() {
     this.totalRows = this.pacientes.length;
-    PacienteService.listar()
-      .then(resposta => {
-        resposta.data.forEach(element => {
-          //configurar o formato de data
-          element.DataDeNascimento = this.organizarData(
-            element.DataDeNascimento,
-            true
-          );
-        });
 
-        this.pacientes = resposta.data;
-      })
-      .catch(resposta => {
-        console.log(resposta);
-      });
+    this.listar();
   },
+
   data() {
     return {
       pacientes: [],
@@ -156,6 +156,36 @@ export default {
       this.currentPage = 1;
     },
 
+    listar(){
+
+      PacienteService.listar()
+      .then(resposta => {
+        resposta.data.forEach(element => {
+          //configurar o formato de data
+          element.DataDeNascimento = this.organizarData(
+            element.DataDeNascimento,
+            true
+          );
+        });
+
+        this.pacientes = resposta.data;
+      })
+      .catch(resposta => {
+        console.log(resposta);
+      });
+  
+    },
+
+    excluir(paciente) {
+      console.log();
+      PacienteService.excluirPaciente(paciente.IdPaciente).then(() => {
+        alert("Paciente '" + this.paciente.Nome + "' excluido com sucesso!");
+        //feito dessa forma para forçar a listagem a atualizar
+        this.pacientes = null;
+        this.listar();
+      });
+    },
+
     // metodo que organiza a data no formato desejado
     organizarData(d, isData) {
       var dataSplit = String(d).split("T");
@@ -186,6 +216,14 @@ export default {
   margin-bottom: 15px;
 }
 .btn-cadastrar {
+  float: right;
+}
+.btn-excluir {
+  margin-top: 15px;
+  float: right;
+}
+.btn-detalhes{
+  margin-top: 15px;
   float: right;
 }
 </style>

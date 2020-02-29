@@ -29,17 +29,15 @@
                             </div>  
 
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Digite o CPF do Paciente"  required/>
-                            </div>                            
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Digite o Nome do Procedimento" v-model="agendamento.NomeProcedimento" required/>
                             </div>
+                                                       
+                        </div>
+
+                        <div class="col-md-6">                            
 
                             <div class="form-group" label="Lista de Pacientes:">
-                                <b-form-select class="form-control" v-model="paciente" :options="options" :select-size="4" required></b-form-select>
+                                <b-form-select class="form-control" v-model="paciente" :options="options" :select-size="7" required></b-form-select>
                                   <div class="mt-3">
                                     Paciente Selecionados:
                                     <strong>{{ paciente }}</strong>
@@ -59,14 +57,13 @@
                           <div class="col-md-6">
 
                             <div class="form-group">         
-                                  <b-form-datepicker class="form-control" placeholder="Digite os Sintomas"
-                                  id="example-datepicker" 
-                                  v-model="agendamento.Anaminese.Sintoma" 
-                                  >
-                                  </b-form-datepicker>         
+                                  <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Digite as Sintomas" v-model="agendamento.Anaminese.Sintoma" required/>
+                                  </div>       
                               </div> 
 
                               <div class="form-group">
+                                <label class="textoParteCorpo">Escolha uma parte do Corpo</label>
                                 <b-form-select class="form-control"
                                     id="input-6"
                                     v-model="agendamento.Anaminese.PartesCorpo"
@@ -78,7 +75,7 @@
 
                           <div class="col-md-6">
                               <div class="form-group">
-                                  <input type="text" class="form-control" placeholder="Digite as Doenças Exixtentes" v-model="agendamento.Anaminese.DoencaExistente" required/>
+                                  <input type="text" class="form-control" placeholder="Digite as Doenças Existentes" v-model="agendamento.Anaminese.DoencaExistente" required/>
                               </div>
                           </div>
                       </div>                    
@@ -203,6 +200,7 @@ export default {
   }
 };
 </script>
+
 <style>
 .form
 {  
@@ -244,5 +242,10 @@ export default {
     color: #fff;    
     margin-bottom: 20px;
     font-family: Arial, Helvetica, sans-serif;
+}
+.textoParteCorpo{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000000;
+  font-size: 16px;
 }
 </style>
