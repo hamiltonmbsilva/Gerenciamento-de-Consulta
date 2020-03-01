@@ -30,7 +30,7 @@ namespace WebApi.Controllers
         }
 
         //GET: api/Agendamento/1
-        [Route("api/agendamento/id")]
+        //[Route("api/Agendamento/id")]
         [HttpGet]
         public IHttpActionResult GetById( int id)
         {
@@ -87,6 +87,28 @@ namespace WebApi.Controllers
                 service.AlterarAgendamento(agendamento);
 
                 return Ok(agendamento);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        //DELETE: api/Agendamento/1
+        //[Route("api/Agendamento/id")]
+        [HttpDelete]
+        public IHttpActionResult DeleteAgendamento(int id)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                service.ExcluirAgendamento(id);
+
+                return Ok();
+
             }
             catch (Exception ex)
             {

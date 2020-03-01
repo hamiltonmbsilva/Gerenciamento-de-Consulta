@@ -168,6 +168,31 @@ namespace WebApi.Service
             return listDto;
         }
 
+        public bool ExcluirAgendamento(int? id)
+        {
+            try
+            {
+                if (id != null)
+                {
+                    var agRepository = new AgendamentoRepository();
+
+                    var agendamento = repository.Find(id);
+
+                    if (agendamento != null)
+                    {
+                        repository.Delete(x => x.IdAgendamento == id);
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }

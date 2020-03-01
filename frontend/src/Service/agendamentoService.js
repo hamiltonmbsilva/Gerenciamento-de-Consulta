@@ -24,6 +24,10 @@ export default {
 
     busvarAgendamentoPeriodoPlano: periodo =>{
         return http.get("/Agendamento/"+periodo);
-    }
+    },
+
+    buscarAgendamentoPeloId: id =>{
+        return http.get("/Agendamento/"+id);
+      }
 
 };

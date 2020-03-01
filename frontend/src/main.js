@@ -15,6 +15,7 @@ Vue.config.productionTip = false
 
 import Agendamento from "./pages/agendamento.vue";
 import AgendamentoForm from "./pages/agendamentoForm.vue";
+import AgendamentoAlterarFrom from "./pages/agendamentoAlterarFrom.vue";
 
 import Paciente from "./pages/paciente.vue";
 import PacienteForm from "./pages/pacienteForm.vue";
@@ -25,6 +26,7 @@ const routes = [
   { path: "/", component: Agendamento },
   { path: "/agendamentos", component: Agendamento },
   { path: "/agendamentos/cadastrar", component: AgendamentoForm },
+  { path: "/agendamentos/alterar", component: AgendamentoAlterarFrom },
   { path: "/paciente", component: Paciente },
   { path: "/paciente/cadastrar", component: PacienteForm },
   { path: "/paciente/alterar", component: PacienteAlterarFrom }

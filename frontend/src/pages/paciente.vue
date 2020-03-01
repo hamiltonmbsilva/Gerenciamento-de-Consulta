@@ -34,7 +34,7 @@
       <b-button
         variant="outline-success"
         class="btn-alterar"
-        @click="alterar(paciente,  row.item, row.index, $event.target)"
+        @click="alterar(paciente, row.item, row.index, $event.target)"
       >Alterar </b-button>
       <b-button
         variant="outline-danger"

@@ -17,6 +17,32 @@
       </b-col>
     </b-row>
 
+    
+    <!-- Info modal -->
+    <b-modal
+      v-if="this.agendamento != null"
+      :id="infoModal.id"
+      :title="infoModal.title"
+      ok-only
+      @hide="resetInfoModal"
+    >
+      <p class="h6">{{fields[1].label +": "+ agendamento.NomeProcedimento}}</p>
+      <p class="h6">{{fields[2].label +": "+ agendamento.Pacientes.Nome}}</p>
+      <p class="h6">{{fields[3].label +": "+ agendamento.DataConsulta}}</p>      
+      <p class="h6">{{fields[4].label +": "+ agendamento.Horario}}</p>
+
+      <b-button
+        variant="outline-success"
+        class="btn-alterar mr-1"
+        @click="alterar(agendamento, row.item, row.index, $event.target)"
+      >Alterar</b-button>
+      <b-button
+        variant="outline-danger"
+        class="btn-excluir mr-1"
+        @click="excluir(agendamento, row.item, row.index, $event.target)"
+      >Excluir</b-button>
+    </b-modal>
+
     <!-- Main table element -->
     <b-table
       show-empty
@@ -31,18 +57,14 @@
       hover
       dark
     >
-      <template slot="actions" slot-scope="row">
-        <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">Detalhes</b-button>
-        <b-button
-        variant="outline-success"
-        class="btn-alterar"
-        @click="alterar()"
-      >Alterar produto</b-button>
-      <b-button
-        variant="outline-danger"
-        class="btn-excluir"
-        @click="excluir()"
-      >Excluir produto</b-button>
+      <template v-slot:cell(actions)="row">
+
+        <b-button size="sm" variant="outline-danger" class="btn-excluir mr-1"  @click="excluir(agendamento, row.item, row.index, $event.target)">Excluir</b-button>
+
+        <b-button size="sm" variant="outline-primary" class="btn-detalhes mr-2" @click="info(row.item, row.index, $event.target)">Detalhes </b-button> 
+
+        <b-button size="sm" variant="outline-success" class="btn-alterar mr-2" @click="alterar(agendamento, row.item, row.index, $event.target)">Alterar</b-button>
+      
       </template>
       
     </b-table>
@@ -58,20 +80,6 @@
       </b-col>
     </b-row>
 
-    <!-- Info modal -->
-    <b-modal
-      v-if="this.agendamento != null"
-      :id="infoModal.id"
-      :title="infoModal.title"
-      ok-only
-      @hide="resetInfoModal"
-    >
-      <p class="h6">{{fields[1].label +": "+ agendamento.dataConsulta}}</p>
-      <p class="h6">{{fields[2].label +": "+ agendamento.nomeProcedimento}}</p>
-      <p class="h6">{{fields[3].label +": "+ agendamento.horario}}</p>
-
-      
-    </b-modal>
   </div>
 </template>
 
@@ -93,23 +101,9 @@ export default {
   mounted() {
     this.totalRows = this.agendamentos.length;
     //debugger;
-    AgendamentoService.listarAgendamentos()
-      .then(resposta => {
-        resposta.data.forEach(element => {
-          //configurar o formato de data
-
-          //debugger;
-          var data = element.DataConsulta;
-          element.DataConsulta = this.organizarData(data, true);
-          element.Horario = this.organizarData(data, false);
-        });
-
-        this.agendamentos = resposta.data;
-      })
-      .catch(resposta => {
-        console.log(resposta);
-      });
+    this.listar();
   },
+
   data() {
     return {
       agendamentos: [],
@@ -148,18 +142,24 @@ export default {
       agendamento: null
     };
   },
+
   methods: {
     info(item, index, button) {
       this.agendamento = item;
-
-      this.infoModal.title = this.agendamento.idAgendamento;
+      
+       //console.log(this.agendamento.IdAgendamento);
+      this.infoModal.title = this.agendamento.NomeProcedimento;
       this.infoModal.content = JSON.stringify(item, null, 2);
       this.$root.$emit("bv::show::modal", this.infoModal.id, button);
+
+       //this.$router.push({path:'/agendamentos', query:{id: this.agendamento.id}});
     },
+
     resetInfoModal() {
       this.infoModal.title = "";
       this.infoModal.content = "";
     },
+
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
@@ -183,27 +183,72 @@ export default {
 
         return `${hora}:${minuto}`;
       }
-    }
+    },
+
+    listar(){
+    AgendamentoService.listarAgendamentos()
+      .then(resposta => {
+        resposta.data.forEach(element => {
+          //configurar o formato de data
+
+          //debugger;
+          var data = element.DataConsulta;
+          element.DataConsulta = this.organizarData(data, true);
+          element.Horario = this.organizarData(data, false);
+        });
+
+        this.agendamentos = resposta.data;
+      })
+      .catch(resposta => {
+        console.log(resposta);
+      });
   },
+
+  excluir(agendamento, item) {
+    
+      this.IdAgendamento = item.IdAgendamento;
+      console.log(this.IdAgendamento);
+      AgendamentoService.excluirAgendamento(this.IdAgendamento).then(() => {
+        alert("Agendamento '" + item.NomeProcedimento + "' excluido com sucesso!");
+        //feito dessa forma para forçar a listagem a atualizar
+        this.agendamento = null;
+        this.listar();
+      });
+    },
+
+  alterar(agendamento, item){
+      this.agendamento = item;
+       this.IdAgendamento = item.IdAgendamento;
+      console.log(this.agendamento);
+      this.$router.replace({
+          path: "/agendamento/alterar?id=" + this.IdAgendamento
+      });
+
+    },
+
+  },
+
   components: {
     Titulo
-  }
+  },
+  
 };
 </script>
+
 <style>
 .pesquisa {
   margin-bottom: 15px;
 }
-.btn-cadastrar {
+.btn-alterar {
+  float: right;
+  margin-top: 15px;
+}
+.btn-excluir {
+  margin-top: 10px;
   float: right;
 }
-.btn-alterar {
-  margin-top: 15px;
-  float: left;
-}
-
-.btn-excluir {
-  margin-top: 15px;
+.btn-detalhes{
+  margin-top: 10px;
   float: right;
 }
 </style>
