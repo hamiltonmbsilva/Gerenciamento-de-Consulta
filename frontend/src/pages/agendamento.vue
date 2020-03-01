@@ -6,7 +6,7 @@
     <b-row>
       <b-col>
         <b-nav-form class="pesquisa">
-          <b-form-input v-model="filter" placeholder="Pesquisar"></b-form-input>
+          <b-form-datepicker v-model="filter" id="example-datepicker"  placeholder="Pesquisar por data do dia"></b-form-datepicker>
           <b-button variant="outline-success" :disabled="!filter" @click="filter = ''">Limpar</b-button>
         </b-nav-form>
       </b-col>
@@ -30,15 +30,18 @@
       <p class="h6">{{fields[2].label +": "+ agendamento.Pacientes.Nome}}</p>
       <p class="h6">{{fields[3].label +": "+ agendamento.DataConsulta}}</p>      
       <p class="h6">{{fields[4].label +": "+ agendamento.Horario}}</p>
+      <!-- <p class="h6">{{fields[5].label +": "+ agendamento.Anaminese.Sintoma}}</p>
+      <p class="h6">{{fields[6].label +": "+ agendamento.Anaminese.DoencaExistente}}</p>
+      <p class="h6">{{fields[7].label +": "+ agendamento.Anaminese.PartesCorpo}}</p> -->
 
       <b-button
         variant="outline-success"
-        class="btn-alterar mr-1"
+        class="btn-alterar-agendamento mr-1"
         @click="alterar(agendamento, row.item, row.index, $event.target)"
       >Alterar</b-button>
       <b-button
         variant="outline-danger"
-        class="btn-excluir mr-1"
+        class="btn-excluir-agendamento mr-1"
         @click="excluir(agendamento, row.item, row.index, $event.target)"
       >Excluir</b-button>
     </b-modal>
@@ -59,11 +62,11 @@
     >
       <template v-slot:cell(actions)="row">
 
-        <b-button size="sm" variant="outline-danger" class="btn-excluir mr-1"  @click="excluir(agendamento, row.item, row.index, $event.target)">Excluir</b-button>
+        <b-button size="sm" variant="outline-danger" class="btn-excluir-agendamento mr-1"  @click="excluir(agendamento, row.item, row.index, $event.target)">Excluir</b-button>
 
-        <b-button size="sm" variant="outline-primary" class="btn-detalhes mr-2" @click="info(row.item, row.index, $event.target)">Detalhes </b-button> 
+        <b-button size="sm" variant="outline-primary" class="btn-detalhes-agendamento mr-2" @click="info(row.item, row.index, $event.target)">Detalhes </b-button> 
 
-        <b-button size="sm" variant="outline-success" class="btn-alterar mr-2" @click="alterar(agendamento, row.item, row.index, $event.target)">Alterar</b-button>
+        <b-button size="sm" variant="outline-success" class="btn-alterar-agendamento mr-2" @click="alterar(agendamento, row.item, row.index, $event.target)">Alterar</b-button>
       
       </template>
       
@@ -239,16 +242,16 @@ export default {
 .pesquisa {
   margin-bottom: 15px;
 }
-.btn-alterar {
+.btn-alterar-agendamento {
   float: right;
-  margin-top: 15px;
+  margin-top: 5px;
 }
-.btn-excluir {
-  margin-top: 10px;
+.btn-excluir-agendamento {
+  margin-top: 5px;
   float: right;
 }
-.btn-detalhes{
-  margin-top: 10px;
+.btn-detalhes-agendamento {
+  margin-top: 5px;
   float: right;
 }
 </style>

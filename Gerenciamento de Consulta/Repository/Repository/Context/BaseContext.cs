@@ -2,6 +2,7 @@
 using RepositoryWebApi.Repository.Models;
 using System.Data.Entity;
 
+
 namespace Repository.Context
 {
     public class BaseContext : DbContext

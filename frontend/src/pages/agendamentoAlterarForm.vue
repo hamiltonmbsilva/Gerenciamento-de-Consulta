@@ -37,17 +37,17 @@
                                                        
                         </div>
 
-                        <div class="col-md-6">                            
-
-                            <div class="form-group" label="Lista de Pacientes:">
+                        <div class="col-md-6">                          
+                            
+                            <div class="form-group" label="Lista de Pacientes:">                              
                                 <b-form-select class="form-control" v-model="paciente" :options="options" :select-size="7" required></b-form-select>
                                   <div class="mt-3">
                                     Paciente Selecionados:
-                                    <strong>{{ paciente }}</strong>
+                                    <strong>{{ paciente}}</strong>
                                   </div>
-                            </div>
-                         
+                            </div>                         
                         </div>
+                        
                     </div>
                 </div>  
 
@@ -206,26 +206,26 @@ export default {
          });
      },
 
-     salvar() {
-       if (this.erroHorario) {
-         this.horario.focus();
-         return;
-       }
+    //  salvar() {
+    //    if (this.erroHorario) {
+    //      this.horario.focus();
+    //      return;
+    //    }
 
-       this.agendamento.Horario = this.horario;
+    //    this.agendamento.Horario = this.horario;
 
-       var valores = String(this.paciente).split("-");
-       this.agendamento.PacienteId = valores[0];
+    //    var valores = String(this.paciente).split("-");
+    //    this.agendamento.PacienteId = valores[0];
 
-       AgendamentoService.salvar(this.agendamento)
-         .then(() => {
-           alert("Agendamento salvo com sucesso!");
-           this.$router.replace({ path: "/agendamentos" });
-         })
-         .catch(error => {
-           alert("Erro ao salvar Agendamento!\n" + error);
-         });
-     },
+    //    AgendamentoService.salvar(this.agendamento)
+    //      .then(() => {
+    //        alert("Agendamento salvo com sucesso!");
+    //        this.$router.replace({ path: "/agendamentos" });
+    //      })
+    //      .catch(error => {
+    //        alert("Erro ao salvar Agendamento!\n" + error);
+    //      });
+    //  },
 
      editar(){
        console.log(this.agendamento);

@@ -33,12 +33,12 @@
 
       <b-button
         variant="outline-success"
-        class="btn-alterar"
+        class="btn-alterar-paciente"
         @click="alterar(paciente, row.item, row.index, $event.target)"
       >Alterar </b-button>
       <b-button
         variant="outline-danger"
-        class="btn-excluir"
+        class="btn-excluir-paciente"
         @click="excluir(paciente, row.item, row.index, $event.target)"
       >Excluir </b-button>
     
@@ -61,11 +61,11 @@
           
       <template v-slot:cell(actions)="row">
 
-        <b-button size="sm" variant="outline-danger" class="btn-excluir mr-1"  @click="excluir(paciente, row.item, row.index, $event.target)">Excluir</b-button>
+        <b-button size="sm" variant="outline-danger" class="btn-excluir-paciente mr-2"  @click="excluir(paciente, row.item, row.index, $event.target)">Excluir</b-button>
 
-        <b-button size="sm" variant="outline-primary" class="btn-detalhes mr-3" @click="info(row.item, row.index, $event.target)">Detalhes </b-button> 
+        <b-button size="sm" variant="outline-primary" class="btn-detalhes-paciente mr-2" @click="info(row.item, row.index, $event.target)">Detalhes </b-button> 
 
-        <b-button size="sm" variant="outline-success" class="btn-alterar " @click="alterar(paciente,  row.item, row.index, $event.target)">Alterar</b-button>
+        <b-button size="sm" variant="outline-success" class="btn-alterar-paciente mr-2" @click="alterar(paciente,  row.item, row.index, $event.target)">Alterar</b-button>
       
       </template>
 
@@ -154,7 +154,7 @@ export default {
     info(item, index, button) {
       this.paciente = item;
 
-      this.infoModal.title = this.paciente.IdPaciente;
+      this.infoModal.title = this.paciente.Nome;
       this.infoModal.content = JSON.stringify(item, null, 2);
       this.$root.$emit("bv::show::modal", this.infoModal.id, button);
 
@@ -266,12 +266,16 @@ export default {
 .btn-cadastrar {
   float: right;
 }
-.btn-excluir {
-  margin-top: 15px;
+.btn-alterar-paciente{
+   margin-top: 5px;
   float: right;
 }
-.btn-detalhes{
-  margin-top: 15px;
+.btn-excluir-paciente {
+  margin-top: 5px;
+  float: right;
+}
+.btn-detalhes-paciente{
+  margin-top: 5px;
   float: right;
 }
 </style>
