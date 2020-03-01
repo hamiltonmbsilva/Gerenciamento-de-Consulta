@@ -18,6 +18,7 @@ import AgendamentoForm from "./pages/agendamentoForm.vue";
 
 import Paciente from "./pages/paciente.vue";
 import PacienteForm from "./pages/pacienteForm.vue";
+import PacienteAlterarFrom from "./pages/pacienteAlterarFrom.vue";
 
 
 const routes = [
@@ -25,7 +26,8 @@ const routes = [
   { path: "/agendamentos", component: Agendamento },
   { path: "/agendamentos/cadastrar", component: AgendamentoForm },
   { path: "/paciente", component: Paciente },
-  { path: "/paciente/cadastrar", component: PacienteForm }
+  { path: "/paciente/cadastrar", component: PacienteForm },
+  { path: "/paciente/alterar", component: PacienteAlterarFrom }
 ];
 
 const router = new VueRouter({

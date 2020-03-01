@@ -17,8 +17,35 @@
       </b-col>
     </b-row>
 
+      <!-- Info modal -->
+    <b-modal
+      v-if="this.paciente != null"
+      :id="infoModal.id"
+      :title="infoModal.title"
+      ok-only
+      @hide="resetInfoModal"
+    >
+      <p class="h6">{{fields[1].label +": "+ paciente.Codigo}}</p>
+      <p class="h6">{{fields[2].label +": "+ paciente.Nome}}</p>
+      <p class="h6">{{fields[3].label +": "+ paciente.CPF}}</p>
+      <p class="h6">{{fields[4].label +": "+ paciente.DataDeNascimento}}</p>
+      <p class="h6">{{fields[5].label +": "+ paciente.Planos}}</p>  
+
+      <b-button
+        variant="outline-success"
+        class="btn-alterar"
+        @click="alterar(paciente,  row.item, row.index, $event.target)"
+      >Alterar </b-button>
+      <b-button
+        variant="outline-danger"
+        class="btn-excluir"
+        @click="excluir(paciente, row.item, row.index, $event.target)"
+      >Excluir </b-button>
+    
+    </b-modal>
+
     <!-- Main table element -->
-    <b-table
+    <b-table     
       show-empty
       stacked="md"
       :items="pacientes"
@@ -31,17 +58,14 @@
       hover
       dark
     >
-      <!-- <template slot="actions" slot-scope="row">       
-        <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">Detalhes</b-button>
-      </template> -->
-      
+          
       <template v-slot:cell(actions)="row">
 
-        <b-button size="sm" variant="outline-danger" class="btn-excluir mr-1" @click="excluir(paciente)">Excluir</b-button>
+        <b-button size="sm" variant="outline-danger" class="btn-excluir mr-1"  @click="excluir(paciente, row.item, row.index, $event.target)">Excluir</b-button>
 
         <b-button size="sm" variant="outline-primary" class="btn-detalhes mr-3" @click="info(row.item, row.index, $event.target)">Detalhes </b-button> 
 
-        <b-button size="sm" variant="outline-success" class="btn-alterar " @click="alterar(paciente)">Alterar</b-button>
+        <b-button size="sm" variant="outline-success" class="btn-alterar " @click="alterar(paciente,  row.item, row.index, $event.target)">Alterar</b-button>
       
       </template>
 
@@ -58,21 +82,7 @@
       </b-col>
     </b-row>
 
-    <!-- Info modal -->
-    <b-modal
-      v-if="this.paciente != null"
-      :id="infoModal.id"
-      :title="infoModal.title"
-      ok-only
-      @hide="resetInfoModal"
-    >
-      <p class="h6">{{fields[1].label +": "+ paciente.Codigo}}</p>
-      <p class="h6">{{fields[2].label +": "+ paciente.Nome}}</p>
-      <p class="h6">{{fields[3].label +": "+ paciente.CPF}}</p>
-      <p class="h6">{{fields[4].label +": "+ paciente.DataDeNascimento}}</p>
-      <p class="h6">{{fields[5].label +": "+ paciente.Planos}}</p>  
-    
-    </b-modal>
+  
   </div>
 </template>
 
@@ -103,7 +113,8 @@ export default {
       fields: [
         {
           key: "IdPaciente",
-          label: "Id"
+          label: "Id",
+          sortable: true,
         },
         {
           key: "Codigo",
@@ -146,6 +157,8 @@ export default {
       this.infoModal.title = this.paciente.IdPaciente;
       this.infoModal.content = JSON.stringify(item, null, 2);
       this.$root.$emit("bv::show::modal", this.infoModal.id, button);
+
+      this.$router.push({path:'/paciente', query:{id: this.paciente.id}});
     },
     resetInfoModal() {
       this.infoModal.title = "";
@@ -157,7 +170,6 @@ export default {
     },
 
     listar(){
-
       PacienteService.listar()
       .then(resposta => {
         resposta.data.forEach(element => {
@@ -166,6 +178,9 @@ export default {
             element.DataDeNascimento,
             true
           );
+          // element.Planos = this.tranformarPlanos(
+          //   element.Planos
+          // );
         });
 
         this.pacientes = resposta.data;
@@ -176,14 +191,47 @@ export default {
   
     },
 
-    excluir(paciente) {
-      console.log();
-      PacienteService.excluirPaciente(paciente.IdPaciente).then(() => {
-        alert("Paciente '" + this.paciente.Nome + "' excluido com sucesso!");
+    tranformarPlanos(planos){
+
+      //console.log(planos);
+      
+            //'UNIMED = 0', 'AMIL = 1', 'SAUDE_SERVIDOR = 2', 'BRADESCO = 3', 'OUTROS = 4'
+                if(planos.Planos == 0){
+                    planos.Planos = 'UNIMED';
+                }
+                else if(planos.Planos == 1){
+                     planos.Planos = 'AMIL';
+                }
+                else if(planos.Planos == 2){
+                     planos.Planos = 'SAUDE_SERVIDOR';
+                }
+                else if(planos.Planos == 3){
+                    planos.Planos = 'BRADESCO';
+                }
+                else if(planos.Planos == 4){
+                     planos.Planos = 'OUTROS';
+                }
+    },
+
+    excluir(paciente,item) {
+      this.IdPaciente = item.IdPaciente;
+     
+      PacienteService.excluirPaciente(this.IdPaciente).then(() => {
+        alert("Paciente '" + item.Nome + "' excluido com sucesso!");
         //feito dessa forma para forçar a listagem a atualizar
         this.pacientes = null;
         this.listar();
       });
+    },
+
+    alterar(paciente, item){
+      this.paciente = item;
+       this.IdPaciente = item.IdPaciente;
+      console.log(this.paciente);
+      this.$router.replace({
+          path: "/paciente/alterar?id=" + this.IdPaciente
+      });
+
     },
 
     // metodo que organiza a data no formato desejado
