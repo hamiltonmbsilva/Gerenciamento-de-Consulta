@@ -2,6 +2,7 @@
 {
     public class AgendamentoListDTO
     {
+        public int IdAgendamento { get; set; }
         public string NomeProcedimento { get; set; }
         public string NomePaciente { get; set; }
         public string DataConsulta { get; set; }

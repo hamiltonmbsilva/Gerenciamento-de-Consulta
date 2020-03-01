@@ -1,6 +1,6 @@
 <template>
-<div class="container register-form" v-if="show">
-            <div class="form form-redondamento">
+  <div class="container register-form" v-if="show">
+      <div class="form form-redondamento">
                 <div class="note">
                     <p>Alterar Paciente</p>
                 </div>
@@ -47,13 +47,12 @@
                     <button type="submit" class="btnAlterar" @click="voltar()" variant="success">Voltar</button>
                     <button type="submit" class="btnSubmit" @click="editar()" variant="success">Alterar</button>
                 </div>
-            </div>
-        </div>
+      </div>
+  </div>
   
 </template>
 
 <script>
-
 
 import PacienteService from "../Service/pacienteService";
 

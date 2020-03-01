@@ -219,9 +219,9 @@ export default {
   alterar(agendamento, item){
       this.agendamento = item;
        this.IdAgendamento = item.IdAgendamento;
-      console.log(this.agendamento);
+      //console.log(this.agendamento);
       this.$router.replace({
-          path: "/agendamento/alterar?id=" + this.IdAgendamento
+          path: "/agendamentos/alterar?id=" + this.IdAgendamento
       });
 
     },

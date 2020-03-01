@@ -4,6 +4,7 @@ namespace Repository.DTO
 {
     public class PacienteListDTO
     {
+        public int IdPaciente { get; set; }
         public string Nome { get; set; }
         public int Codigo { get; set; }
         public string CPF { get; set; }
