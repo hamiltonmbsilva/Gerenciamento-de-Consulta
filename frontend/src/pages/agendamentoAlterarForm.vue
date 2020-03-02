@@ -15,7 +15,8 @@
                                 id="example-datepicker" 
                                 v-model="agendamento.DataConsulta" 
                                 >
-                                </b-form-datepicker>         
+                                </b-form-datepicker> 
+                                <strong>{{agendamento.DataConsulta}}</strong>        
                             </div> 
 
                             <div class="form-group">
@@ -28,6 +29,7 @@
                                   placeholder="Digite o Horario da Consulta"
                                 ></b-form-input>
                                 <p v-if="erroHorario" style="color:red">{{erroHorario}}</p>
+                                <strong>{{agendamento.Horario}}</strong>
                             </div>  
 
                             <div class="form-group">
@@ -43,8 +45,9 @@
                                 <b-form-select class="form-control" v-model="paciente" :options="options" :select-size="7" required></b-form-select>
                                   <div class="mt-3">
                                     Paciente Selecionados:
-                                    <strong>{{ paciente}}</strong>
+                                    <strong>{{ paciente}}</strong>                                   
                                   </div>
+                                   
                             </div>                         
                         </div>
                         

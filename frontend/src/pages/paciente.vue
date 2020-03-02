@@ -178,9 +178,26 @@ export default {
             element.DataDeNascimento,
             true
           );
-          // element.Planos = this.tranformarPlanos(
-          //   element.Planos
-          // );
+
+          //  element.Planos = this.tranformarPlanos(
+          //    element.Planos
+          //  );
+                if(element.Planos == 0){
+                    element.Planos = 'UNIMED';
+                }
+                else if(element.Planos == 1){
+                     element.Planos = 'AMIL';
+                }
+                else if(element.Planos == 2){
+                     element.Planos = 'SAUDE_SERVIDOR';
+                }
+                else if(element.Planos == 3){
+                    element.Planos = 'BRADESCO';
+                }
+                else if(element.Planos == 4){
+                     element.Planos = 'OUTROS';
+                }
+
         });
 
         this.pacientes = resposta.data;
@@ -196,19 +213,19 @@ export default {
       //console.log(planos);
       
             //'UNIMED = 0', 'AMIL = 1', 'SAUDE_SERVIDOR = 2', 'BRADESCO = 3', 'OUTROS = 4'
-                if(planos.Planos == 0){
+                if(planos == 0){
                     planos.Planos = 'UNIMED';
                 }
-                else if(planos.Planos == 1){
+                else if(planos == 1){
                      planos.Planos = 'AMIL';
                 }
-                else if(planos.Planos == 2){
+                else if(planos == 2){
                      planos.Planos = 'SAUDE_SERVIDOR';
                 }
-                else if(planos.Planos == 3){
+                else if(planos == 3){
                     planos.Planos = 'BRADESCO';
                 }
-                else if(planos.Planos == 4){
+                else if(planos == 4){
                      planos.Planos = 'OUTROS';
                 }
     },
