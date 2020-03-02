@@ -42,7 +42,6 @@ namespace RepositoryWebApi.Repository.Models
             map.HasRequired(x => x.Pacientes)
                 .WithMany(x => x.Agendamentos)
                 .HasForeignKey(c => c.PacienteId);
-                
 
             //1:1
             modelBuilder.Entity<Anaminese>()

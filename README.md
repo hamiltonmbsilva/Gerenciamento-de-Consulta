@@ -4,6 +4,8 @@ Sistema de gerenciamento de consulta .NET framework e Vue.js
 
 
 # Iniciando projeto
+ - frontend publicado no Netlify: https://gerenciamentodeconsulta.netlify.com/
+
  - banco de dados SqlServer
  - versão do .NET framework 4.7.2
  - versão do nodeJs 10.16.3
@@ -24,7 +26,7 @@ Sistema de gerenciamento de consulta .NET framework e Vue.js
 	
 	> add-Migration
 	
-	> update-database
+	> upadate-database
 
  -Abrir a pasta 'frontend' no VS CODE, abrir o terminal utilizando o comando (CTRL + "):
 
