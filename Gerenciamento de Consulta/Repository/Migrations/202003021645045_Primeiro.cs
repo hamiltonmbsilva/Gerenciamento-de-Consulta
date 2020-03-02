@@ -32,7 +32,7 @@
                         Agendamento_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.agendamentos", t => t.Agendamento_Id)
+                .ForeignKey("dbo.agendamentos", t => t.Agendamento_Id, cascadeDelete: true)
                 .Index(t => t.Agendamento_Id);
             
             CreateTable(

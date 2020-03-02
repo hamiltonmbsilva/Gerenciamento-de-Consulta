@@ -1,6 +1,7 @@
 ﻿using Repository.Context;
 using System;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 
 namespace RepositoryWebApi.Repository
@@ -51,7 +52,9 @@ namespace RepositoryWebApi.Repository
 
         public void Update(TEntity obj)
         {
-            ctx.Entry(obj).State = EntityState.Modified;
+            ctx.Set<TEntity>().AddOrUpdate(obj);
+
+            //ctx.Entry(obj).State = EntityState.Modified;
             ctx.SaveChanges();
         }
 

@@ -60,9 +60,9 @@
     <Compile Include="DTO\AnamineseDTO.cs" />
     <Compile Include="DTO\PacienteDTO.cs" />
     <Compile Include="Map\MapConfig.cs" />
-    <Compile Include="Migrations\202003020044590_Primeiro.cs" />
-    <Compile Include="Migrations\202003020044590_Primeiro.designer.cs">
-      <DependentUpon>202003020044590_Primeiro.cs</DependentUpon>
+    <Compile Include="Migrations\202003021645045_Primeiro.cs" />
+    <Compile Include="Migrations\202003021645045_Primeiro.designer.cs">
+      <DependentUpon>202003021645045_Primeiro.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agendamento.cs" />
@@ -84,8 +84,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003020044590_Primeiro.resx">
-      <DependentUpon>202003020044590_Primeiro.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003021645045_Primeiro.resx">
+      <DependentUpon>202003021645045_Primeiro.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

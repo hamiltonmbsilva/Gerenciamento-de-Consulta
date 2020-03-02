@@ -1,4 +1,5 @@
-﻿using Repository.Models;
+﻿using Repository.Context;
+using Repository.Models;
 using RepositoryWebApi.Repository.Models;
 using System;
 using System.Data.Entity;

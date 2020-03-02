@@ -179,9 +179,6 @@ export default {
             true
           );
 
-          //  element.Planos = this.tranformarPlanos(
-          //    element.Planos
-          //  );
                 if(element.Planos == 0){
                     element.Planos = 'UNIMED';
                 }
@@ -197,7 +194,7 @@ export default {
                 else if(element.Planos == 4){
                      element.Planos = 'OUTROS';
                 }
-
+          
         });
 
         this.pacientes = resposta.data;
@@ -208,27 +205,27 @@ export default {
   
     },
 
-    tranformarPlanos(planos){
+    // tranformarPlanos(planos){
 
-      //console.log(planos);
+    //   //console.log(planos);
       
-            //'UNIMED = 0', 'AMIL = 1', 'SAUDE_SERVIDOR = 2', 'BRADESCO = 3', 'OUTROS = 4'
-                if(planos == 0){
-                    planos.Planos = 'UNIMED';
-                }
-                else if(planos == 1){
-                     planos.Planos = 'AMIL';
-                }
-                else if(planos == 2){
-                     planos.Planos = 'SAUDE_SERVIDOR';
-                }
-                else if(planos == 3){
-                    planos.Planos = 'BRADESCO';
-                }
-                else if(planos == 4){
-                     planos.Planos = 'OUTROS';
-                }
-    },
+    //         //'UNIMED = 0', 'AMIL = 1', 'SAUDE_SERVIDOR = 2', 'BRADESCO = 3', 'OUTROS = 4'
+    //             if(planos.Planos == 0){
+    //                 planos.Planos = 'UNIMED';
+    //             }
+    //             else if(planos.Planos == 1){
+    //                  planos.Planos = 'AMIL';
+    //             }
+    //             else if(planos.Planos == 2){
+    //                  planos.Planos = 'SAUDE_SERVIDOR';
+    //             }
+    //             else if(planos.Planos == 3){
+    //                 planos.Planos = 'BRADESCO';
+    //             }
+    //             else if(planos.Planos == 4){
+    //                  planos.Planos = 'OUTROS';
+    //             }
+    // },
 
     excluir(paciente,item) {
       this.IdPaciente = item.IdPaciente;

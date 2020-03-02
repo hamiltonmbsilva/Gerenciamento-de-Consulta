@@ -13,7 +13,6 @@ namespace WebApi.Service
     public class AgendamentoService
     {
         private AgendamentoRepository repository = new AgendamentoRepository();
-        private AnamineseRepository anaminseService = new AnamineseRepository();
 
         public IEnumerable<Agendamento> BuscarTodosOsAgendamento()
         {
@@ -106,11 +105,6 @@ namespace WebApi.Service
                 }
                 else if(agend.IdAgendamento != 0)
                 {
-
-                    //var anaminese = agend.Anaminese;                    
-
-                   //anaminseService.Update(agend.Anaminese);
-
                     // está mantendo o produto "p" em memória e não está buscando no banco
                     var oldAgendamento = repository.Find(agend.IdAgendamento);
 

@@ -24,7 +24,8 @@ Sistema de gerenciamento de consulta .NET framework e Vue.js
 	
 	> add-Migration
 	
-	> upadate-database
+	> update-database
+
  -Abrir a pasta 'frontend' no VS CODE, abrir o terminal utilizando o comando (CTRL + "):
 
 	> npm install
