@@ -41,8 +41,8 @@ namespace RepositoryWebApi.Repository.Models
             //Relacionamento
             map.HasRequired(x => x.Pacientes)
                 .WithMany(x => x.Agendamentos)
-                .HasForeignKey(c => c.PacienteId)
-                .WillCascadeOnDelete(true);
+                .HasForeignKey(c => c.PacienteId);
+                
 
             //1:1
             modelBuilder.Entity<Anaminese>()
