@@ -228,7 +228,8 @@ export default {
     //  },
 
      editar(){
-       console.log(this.agendamento);
+       console.log(this.agendamento.Horario = this.horario);
+       this.agendamento.Horario = this.horario;
           AgendamentoService.alterarAgendamento(this.agendamento)
           .then(() => {
               alert("Agendamento alterado com sucesso!");

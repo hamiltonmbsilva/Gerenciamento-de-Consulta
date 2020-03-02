@@ -158,6 +158,13 @@ export default {
        //this.$router.push({path:'/agendamentos', query:{id: this.agendamento.id}});
     },
 
+    filterData(){
+      console.log(this.filter);
+      var data = this.filter;
+
+      this.organizarData(data, true);
+    },
+
     resetInfoModal() {
       this.infoModal.title = "";
       this.infoModal.content = "";
@@ -189,6 +196,7 @@ export default {
     },
 
     listar(){
+     
     AgendamentoService.listarAgendamentos()
       .then(resposta => {
         resposta.data.forEach(element => {
@@ -196,8 +204,10 @@ export default {
 
           //debugger;
           var data = element.DataConsulta;
+          var horario = element.Horario;
           element.DataConsulta = this.organizarData(data, true);
-          element.Horario = this.organizarData(data, false);
+          element.Horario = this.organizarData(horario, false);
+         
         });
 
         this.agendamentos = resposta.data;
