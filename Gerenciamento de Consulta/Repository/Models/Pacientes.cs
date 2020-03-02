@@ -48,7 +48,8 @@ namespace Repository.Models
             //Relacionamento
             map.HasMany(a => a.Agendamentos)
                 .WithRequired(a => a.Pacientes)
-                .HasForeignKey(a => a.PacienteId);
+                .HasForeignKey(a => a.PacienteId)
+                .WillCascadeOnDelete(true);
         }
     }
 }

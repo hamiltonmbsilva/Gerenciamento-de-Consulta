@@ -79,10 +79,10 @@ namespace WebApi.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
+                //if (!ModelState.IsValid)
+                //{
+                //    return BadRequest(ModelState);
+                //}
 
                 service.AlterarAgendamento(agendamento);
 

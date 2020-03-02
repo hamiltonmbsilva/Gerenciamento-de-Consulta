@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "f9d7ac7c-ef45-4b17-87b2-36304944e6e3",
+		"name": "Gerenciamento de consulta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Agendamentos do dia",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44385/api/Agendamento/dia?dia=2020-02-28",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44385",
+					"path": [
+						"api",
+						"Agendamento",
+						"dia"
+					],
+					"query": [
+						{
+							"key": "dia",
+							"value": "2020-02-28"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dados de um paciente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44385/api/pacientes/dados?codigo=123",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44385",
+					"path": [
+						"api",
+						"pacientes",
+						"dados"
+					],
+					"query": [
+						{
+							"key": "codigo",
+							"value": "123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agendamentos de um período de um plano de saúde",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44385/api/Agendamento/periodoPlano?diaInicial=2020-02-20&diaFinal=2020-02-22&plano=unimed",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44385",
+					"path": [
+						"api",
+						"Agendamento",
+						"periodoPlano"
+					],
+					"query": [
+						{
+							"key": "diaInicial",
+							"value": "2020-02-20"
+						},
+						{
+							"key": "diaFinal",
+							"value": "2020-02-22"
+						},
+						{
+							"key": "plano",
+							"value": "unimed"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
